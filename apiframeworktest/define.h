@@ -39,21 +39,14 @@ enum class KEY
 enum class GROUP_TYPE
 {
 	DEFAULT,
-	PLAYER,
-	BULLET_PLAYER,
-	BULLET_MONSTER,
-	MONSTER,
 
 	END = 32,
 };
 
 enum class SCENE_TYPE
 {
-	START,
-	SCENE_01,
-	TOOL,
-	SCENE_02,
-	END,
+
+	END
 };
 
 enum class BRUSH_TYPE
