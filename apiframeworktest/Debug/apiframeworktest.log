@@ -1,0 +1,21 @@
+﻿  Bullet.cpp
+C:\Users\user\source\repos\apiframeworktest\apiframeworktest\Bullet.cpp(8,1): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+  Core.cpp
+  Image.cpp
+  KeyMgr.cpp
+  main.cpp
+  Monster.cpp
+  Object.cpp
+  PathMgr.cpp
+  Player.cpp
+  Res.cpp
+  ResMgr.cpp
+  Scene.cpp
+  SceneMgr.cpp
+  Scene_Start.cpp
+  Sound.cpp
+  TimeMgr.cpp
+  Vec2.cpp
+C:\Users\user\source\repos\apiframeworktest\apiframeworktest\Vec2.cpp(42,5): warning C4244: '초기화 중': 'long'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\user\source\repos\apiframeworktest\apiframeworktest\Vec2.cpp(43,5): warning C4244: '초기화 중': 'long'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  apiframeworktest.vcxproj -> C:\Users\user\source\repos\apiframeworktest\Debug\apiframeworktest.exe
