@@ -30,11 +30,11 @@ void Scene::FinalUpdate()
 
 void Scene::Render(HDC hdc)
 {
-	int width = SCREEN_WIDTH;
-	int height = SCREEN_HEIGHT;
-	HDC hMemDC = CreateCompatibleDC(hdc);
-	HBITMAP hBitmap = CreateCompatibleBitmap(hdc, width, height);
-	HBITMAP hOldBitmap = (HBITMAP)SelectObject(hMemDC, hBitmap);
+	//int width = SCREEN_WIDTH;
+	//int height = SCREEN_HEIGHT;
+	//HDC hMemDC = CreateCompatibleDC(hdc);
+	//HBITMAP hBitmap = CreateCompatibleBitmap(hdc, width, height);
+	//HBITMAP hOldBitmap = (HBITMAP)SelectObject(hMemDC, hBitmap);
 
 	for (UINT i = 0; i < (UINT)GROUP_TYPE::END; i++)
 	{
@@ -43,7 +43,7 @@ void Scene::Render(HDC hdc)
 		{
 			if (!(*iter)->IsDead())
 			{
-				(*iter)->Render(hMemDC);
+				(*iter)->Render(hdc);
 				iter++;
 			}
 			else
@@ -55,6 +55,7 @@ void Scene::Render(HDC hdc)
 
 
 }
+
 
 void Scene::DeleteGroup(GROUP_TYPE _eTarget)
 {
