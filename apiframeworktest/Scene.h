@@ -16,6 +16,7 @@ public:
 	virtual void Render(HDC _dc);
 	virtual void Enter() abstract; // 해당 Scene에 진입시 호출
 	virtual void Exit() abstract;  // 해당 Scene을 나올때 호출
+
 public:
 	void AddObject(Object* _pObj, GROUP_TYPE _eType)
 	{

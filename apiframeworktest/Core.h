@@ -2,6 +2,9 @@
 #include "framework.h"
 #include "define.h"
 #include "BWindow.h"
+#include "Camera.h"
+
+
 class Core
 	: public BWindow
 {
@@ -21,6 +24,9 @@ private:
 	HDC							m_hDC;   // 메인 윈도우에 Draw할 DC
 	HBITMAP						m_hBit;	 //사본용 비트맵
 	HDC							m_memDC; // 사본용 DC
+
+public:
+	Camera					m_CameraObject;
 
 	// 자주 사용하는 GDI(Graphic Device Interface) Object
 	HBRUSH m_arrBrush[(UINT)BRUSH_TYPE::END];

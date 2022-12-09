@@ -15,6 +15,9 @@
 #define CLONE(type) type* Clone() {return new type(*this);}
 #define PI 3.1415926535897932384f
 
+#define SCREEN_WIDTH 1280
+#define SCREEN_HEIGHT 720
+
 enum class KEY_STATE
 {
 	NONE, // 눌리지 않았고, 이전에도 눌리지 않는 상태
@@ -45,7 +48,7 @@ enum class GROUP_TYPE
 
 enum class SCENE_TYPE
 {
-
+	DEFAULT,
 	END
 };
 

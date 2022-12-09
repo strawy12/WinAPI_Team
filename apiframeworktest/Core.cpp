@@ -15,6 +15,7 @@ Core::Core()
 	, m_memDC(0)
 	, m_arrBrush{}
 	, m_arrPen{}
+	, m_CameraObject()
 {
 }
 

@@ -1,6 +1,8 @@
 #include "pch.h"
+#include "Core.h"
 #include "Scene.h"
 #include "Object.h"
+
 void Scene::Update()
 { 
 	for (UINT i = 0; i < (UINT)GROUP_TYPE::END; i++)
@@ -10,6 +12,11 @@ void Scene::Update()
 			if (!m_vecObj[i][j]->IsDead())
 				m_vecObj[i][j]->Update();
 		}
+	}
+
+	if (Core::GetInst()->m_CameraObject.GetIsShaking())
+	{
+		Core::GetInst()->m_CameraObject.CameraShake();
 	}
 }
 
@@ -24,8 +31,14 @@ void Scene::FinalUpdate()
 	}
 }
 
-void Scene::Render(HDC _dc)
+void Scene::Render(HDC hdc)
 {
+	int width = SCREEN_WIDTH;
+	int height = SCREEN_HEIGHT;
+	HDC hMemDC = CreateCompatibleDC(hdc);
+	HBITMAP hBitmap = CreateCompatibleBitmap(hdc, width, height);
+	HBITMAP hOldBitmap = (HBITMAP)SelectObject(hMemDC, hBitmap);
+
 	for (UINT i = 0; i < (UINT)GROUP_TYPE::END; i++)
 	{
 		vector<Object*>::iterator iter = m_vecObj[i].begin();
@@ -33,7 +46,7 @@ void Scene::Render(HDC _dc)
 		{
 			if (!(*iter)->IsDead())
 			{
-				(*iter)->Render(_dc);
+				(*iter)->Render(hMemDC);
 				iter++;
 			}
 			else
@@ -42,14 +55,16 @@ void Scene::Render(HDC _dc)
 			}
 		}
 	}
-	//for (UINT i = 0; i < (UINT)GROUP_TYPE::END; i++)
-	//{
-	//	for (size_t j = 0; j < m_vecObj[i].size(); j++)
-	//	{
-	//		if (!m_vecObj[i][j]->IsDead())
-	//		m_vecObj[i][j]->Render(_dc);
-	//	}
-	//}
+
+	Camera& cameraObject = Core::GetInst()->m_CameraObject;
+
+	GdiTransparentBlt(hdc, 0 + Core::GetInst()->m_CameraObject.GetShakeNumber(), 0, SCREEN_WIDTH, SCREEN_HEIGHT,
+		Core::GetInst()->GetMainDC()
+		, Core::GetInst()->m_CameraObject.GetLeft()
+		, Core::GetInst()->m_CameraObject.GetTop()
+		, Core::GetInst()->m_CameraObject.GetWidth()
+		, Core::GetInst()->m_CameraObject.GetHeight()
+		, RGB(255, 0, 255));
 }
 
 void Scene::DeleteGroup(GROUP_TYPE _eTarget)
