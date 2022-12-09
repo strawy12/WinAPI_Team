@@ -15,8 +15,10 @@
 #define CLONE(type) type* Clone() {return new type(*this);}
 #define PI 3.1415926535897932384f
 
-#define SCREEN_WIDTH 1920	
-#define SCREEN_HEIGHT 1080
+#define SCREEN_WIDTH 650	
+#define SCREEN_HEIGHT 700
+
+#define MAX_BLOCK_COUNT 12
 
 enum class KEY_STATE
 {
@@ -42,7 +44,7 @@ enum class KEY
 enum class GROUP_TYPE
 {
 	DEFAULT,
-
+	UI,
 	END = 32,
 };
 

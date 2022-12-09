@@ -28,6 +28,7 @@ private:
 	void SetDead() { m_bAlive = false; }
 	friend class EventMgr;
 public:
+	virtual void	Init() {}
 	virtual void	Update() abstract;
 	virtual void	FinalUpdate() final;
 	virtual void	Render(HDC _dc);
