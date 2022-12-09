@@ -154,6 +154,9 @@
     <ClInclude Include="Camera.h">
       <Filter>Engine\02. Core</Filter>
     </ClInclude>
+    <ClInclude Include="Scene_01.h">
+      <Filter>Engine\05. Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="apiframeworktest.rc">
@@ -235,6 +238,9 @@
     </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>Engine\02. Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene_01.cpp">
+      <Filter>Engine\05. Scene</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

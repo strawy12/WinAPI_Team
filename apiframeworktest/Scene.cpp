@@ -14,10 +14,7 @@ void Scene::Update()
 		}
 	}
 
-	if (Core::GetInst()->m_CameraObject.GetIsShaking())
-	{
-		Core::GetInst()->m_CameraObject.CameraShake();
-	}
+	
 }
 
 void Scene::FinalUpdate()
@@ -56,15 +53,7 @@ void Scene::Render(HDC hdc)
 		}
 	}
 
-	Camera& cameraObject = Core::GetInst()->m_CameraObject;
 
-	GdiTransparentBlt(hdc, 0 + Core::GetInst()->m_CameraObject.GetShakeNumber(), 0, SCREEN_WIDTH, SCREEN_HEIGHT,
-		Core::GetInst()->GetMainDC()
-		, Core::GetInst()->m_CameraObject.GetLeft()
-		, Core::GetInst()->m_CameraObject.GetTop()
-		, Core::GetInst()->m_CameraObject.GetWidth()
-		, Core::GetInst()->m_CameraObject.GetHeight()
-		, RGB(255, 0, 255));
 }
 
 void Scene::DeleteGroup(GROUP_TYPE _eTarget)

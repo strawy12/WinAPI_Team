@@ -1,7 +1,29 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(534,5): warning MSB8028: 중간 디렉터리(x64\Debug\)에 다른 프로젝트(apiframeworktest.vcxproj)에서 공유하는 파일이 포함되어 있습니다.  이로 인해 잘못된 정리 및 다시 빌드 동작이 수행될 수 있습니다.
+  Animation.cpp
+  Animator.cpp
+  BWindow.cpp
+  Camera.cpp
+  Collider.cpp
   CollisionMgr.cpp
+  Core.cpp
   EventMgr.cpp
+  Image.cpp
+  KeyMgr.cpp
+  Object.cpp
+  PathMgr.cpp
+D:\VS\WinAPI_Team\apiframeworktest\PathMgr.cpp(17,35): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Res.cpp
+  ResMgr.cpp
   Scene.cpp
-D:\VS\WinAPI_Team\apiframeworktest\Scene.cpp(67,27): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   SceneMgr.cpp
+  Scene_01.cpp
+  SelectGDI.cpp
+  Sound.cpp
+  SoundMgr.cpp
+  TimeMgr.cpp
+  Vec2.cpp
+D:\VS\WinAPI_Team\apiframeworktest\Vec2.cpp(26,5): warning C4244: '초기화 중': 'long'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\VS\WinAPI_Team\apiframeworktest\Vec2.cpp(27,5): warning C4244: '초기화 중': 'long'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  func.cpp
+  main.cpp
   apiframeworktest.vcxproj -> D:\VS\WinAPI_Team\OutPut\bin_debug\Gamep_winapiframework.exe

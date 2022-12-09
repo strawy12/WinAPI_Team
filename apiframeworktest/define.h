@@ -15,8 +15,8 @@
 #define CLONE(type) type* Clone() {return new type(*this);}
 #define PI 3.1415926535897932384f
 
-#define SCREEN_WIDTH 1280
-#define SCREEN_HEIGHT 720
+#define SCREEN_WIDTH 1920	
+#define SCREEN_HEIGHT 1080
 
 enum class KEY_STATE
 {

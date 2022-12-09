@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "SceneMgr.h"
 #include "EventMgr.h"
-#include "Scene.h"
+#include "Scene_01.h"
 
 SceneMgr::SceneMgr()
 	: m_pCurScene(nullptr)
@@ -31,7 +31,7 @@ void SceneMgr::ChangeScene(SCENE_TYPE _eNext)
 void SceneMgr::Init()
 {
 	// Scene 생성
-	
+	m_arrScene[(UINT)SCENE_TYPE::DEFAULT] = new Scene_01;
 	// 현재 씬 지정
 	m_pCurScene = m_arrScene[(UINT)SCENE_TYPE::DEFAULT];
 	m_pCurScene->Enter();
