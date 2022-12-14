@@ -28,3 +28,26 @@ void ChangeScene(SCENE_TYPE _eNext)
 
 	EventMgr::GetInst()->AddEvent(evn);
 }
+
+wstring ToStringMonterType(MONSTER_TYPE type)
+{
+	switch (type)
+	{
+	case MONSTER_TYPE::MUSHROOM:
+		return  L"MUSHROOM";
+	case MONSTER_TYPE::OCTOPUS:
+		return  L"OCTOPUS";
+
+	case MONSTER_TYPE::PENGUIN:
+		return  L"PENGUIN";
+
+	case MONSTER_TYPE::PINKBEEN:
+		return  L"PINKBEEN";
+
+	case MONSTER_TYPE::SSLIME:
+		return  L"SSLIME";
+
+	default:
+		break;
+	}
+}

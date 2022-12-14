@@ -3,13 +3,12 @@
 #include "Object.h"
 
 class Image;
-class Block :
-    public Object
+class Block : public Object
 {
 private:
     Image* m_pImage;
 public:
-    Block();
+    Block(MONSTER_TYPE type);
     virtual ~Block();
 private:
 

@@ -10,16 +10,16 @@
 #include "Collider.h"
 #include "Animator.h"
 #include "Animation.h"
-Block::Block() : Object()
+Block::Block(MONSTER_TYPE type) : Object()
 {
-	wstring imagePath[(UINT)MONSTER_TYPE::END] = { L"Image\\Mushroom.bmp", L"Image\\Octopus.bmp", L"Image\\Penguin.bmp", L"Image\\PinkBeen.bmp", L"Image\\Sslime.bmp" };
-	m_pImage = ResMgr::GetInst()->ImgLoad(L"Block", imagePath[rand() % 5]);
+	wstring imagePath[(UINT)MONSTER_TYPE::END] = { L"Image\\Mushroom.bmp", L"Image\\Octopus.bmp", L"Image\\Penguin.bmp", L"Image\\PinkBeen.bmp", L"Image\\Sslime.bmp" }; // 이미지 업로드
+	m_pImage = ResMgr::GetInst()->ImgLoad(ToStringMonterType(type), imagePath[(int)type]); // 블록을 랜덤으로 출력
 }
 Block::~Block()
 {
 
 }
-void Block::Update()
+void Block::Update() 
 {
 
 }
@@ -27,8 +27,8 @@ void Block::Render(HDC _dc)
 {
 	int Width = (int)m_pImage->GetWidth();
 	int Height = (int)m_pImage->GetHeight();
-	SetPos(Vec2(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2));
-	SetScale(Vec2(10, 10));
+	//SetPos(Vec2(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2));
+	SetScale(Vec2(5, 5));
 	Vec2 vPos = GetPos();
 	Vec2 vScale = GetScale();
 	TransparentBlt(_dc
