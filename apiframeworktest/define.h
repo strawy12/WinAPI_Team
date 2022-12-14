@@ -8,9 +8,9 @@
 #define fDT TimeMgr::GetInst()->GetfDT()
 #define DT TimeMgr::GetInst()->GetDT()
 #define KEY_CHECK(key, state) KeyMgr::GetInst()->GetKey(key) == state
-#define KEY_HOLD(key) KEY_CHECK(key, KEY_STATE::HOLD)
-#define KEY_TAP(key) KEY_CHECK(key, KEY_STATE::TAP)
-#define KEY_AWAY(key) KEY_CHECK(key, KEY_STATE::AWAY)
+#define KEY_STAY(key) KEY_CHECK(key, KEY_STATE::STAY)
+#define KEY_DOWN(key) KEY_CHECK(key, KEY_STATE::DOWN)
+#define KEY_UP(key) KEY_CHECK(key, KEY_STATE::UP)
 #define KEY_NONE(key) KEY_CHECK(key, KEY_STATE::NONE)
 #define CLONE(type) type* Clone() {return new type(*this);}
 #define PI 3.1415926535897932384f
@@ -23,9 +23,9 @@
 enum class KEY_STATE
 {
 	NONE, // 눌리지 않았고, 이전에도 눌리지 않는 상태
-	TAP, // 막 누른 ㅣ점
-	HOLD, // 누르고 있는
-	AWAY, // 막 뗀 시점(이전 프레임 눌려져있는)
+	DOWN, // 막 누른 ㅣ점
+	STAY, // 누르고 있는
+	UP, // 막 뗀 시점(이전 프레임 눌려져있는)
 };
 
 enum class KEY
