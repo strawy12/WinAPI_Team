@@ -26,6 +26,7 @@ private:
 	float m_spalling;
 
 	vector<InventoryBoxUI> m_uiBoxVec;
+	POINT m_mousept;
 	// 추후 이미지로 변경할 예정
 };
 

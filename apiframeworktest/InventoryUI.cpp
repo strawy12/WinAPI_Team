@@ -25,12 +25,12 @@ void InventoryUI::Init()
 void InventoryUI::Update()
 {
 		POINT pt;
-		GetCursorPos(&pt);
-		ScreenToClient(Core::GetInst()->GetWndHandle(), &pt);
+		GetCursorPos(&m_mousept);
+		ScreenToClient(Core::GetInst()->GetWndHandle(), &m_mousept);
 		int a;
 		for (int i = 0; i < MAX_BLOCK_COUNT; ++i)
 		{
-			if (PtInRect(&m_uiBoxVec[i].rt, pt))
+			if (PtInRect(&m_uiBoxVec[i].rt, m_mousept))
 			{
 				m_uiBoxVec[i].isClick = true;
 			}
@@ -38,12 +38,20 @@ void InventoryUI::Update()
 			{
 				m_uiBoxVec[i].isClick = false;
 			}
+
 		}
+
 
 }
 
 void InventoryUI::Render(HDC hdc)
 {
+	/*TCHAR szTemp[256];
+	wstring str;
+	LONG x = m_mousept.x;
+	LONG y = m_mousept.y;
+	swprintf_s(szTemp, TEXT("mouse pos: %ld %ld"), x, y);
+	OutputDebugString(szTemp);*/
 	Vec2 vPos = GetPos();
 	//¸¶Á¨Å¸ »ö»ó »¬¶§ transparent: Åõ¸íÇÑ
 	// bmp 
@@ -60,6 +68,7 @@ void InventoryUI::Render(HDC hdc)
 	SelectObject(hdc, oldBrush);
 
 	HBRUSH blockBrush = CreateSolidBrush(RGB(0, 0, 0));
+
 	for (int i = 0; i < MAX_BLOCK_COUNT; ++i)
 	{
 		if (m_uiBoxVec[i].isClick)
@@ -80,6 +89,7 @@ void InventoryUI::Render(HDC hdc)
 	}
 
 	DeleteObject(bgBrush);
+	DeleteObject(blockBrush);
 }
 
 void InventoryUI::CreateBoxUI()
@@ -87,19 +97,21 @@ void InventoryUI::CreateBoxUI()
 	Vec2 vPos = GetPos();
 
 	Vec2 startPos = Vec2(vPos.x - m_BGSize.x / 2.f + m_padding.left, vPos.y - m_BGSize.y / 2.f + m_padding.top);
-	Vec2 blockSize = Vec2((m_BGSize.x - (m_padding.left + m_padding.right)) / MAX_BLOCK_COUNT - m_spalling,
+
+	Vec2 blockSize = Vec2(((m_BGSize.x - (m_padding.left + m_padding.right) - (m_spalling * (MAX_BLOCK_COUNT -1))) / MAX_BLOCK_COUNT),
 		m_BGSize.y - (m_padding.top + m_padding.bottom));
 
 	for (int i = 0; i < MAX_BLOCK_COUNT; ++i)
 	{
 		Vec2 pos = startPos;
-		pos.x += i * (blockSize.x + m_spalling);
+		pos.x += i * (int)(blockSize.x+ m_spalling);
 
-		m_uiBoxVec.push_back({
+		m_uiBoxVec.push_back({ 
+		RECT{
 	  (int)(pos.x)
 	, (int)(pos.y)
 	, (int)(pos.x + blockSize.x)
-	, (int)(pos.y + blockSize.y) });
+	, (int)(pos.y + blockSize.y) }, false});
 	}
 }
 
