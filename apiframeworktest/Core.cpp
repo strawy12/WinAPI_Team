@@ -8,6 +8,7 @@
 #include "CollisionMgr.h"
 #include "EventMgr.h"
 #include "SoundMgr.h"
+#include"BlockMgr.h"
 Core::Core()
 	: m_hDC(0)
 	, m_ptResolution{}
@@ -55,6 +56,7 @@ int Core::Init(HWND _hWnd, POINT _ptResolution)
 	TimeMgr::GetInst()->Init();
 	KeyMgr::GetInst()->Init();
 	SceneMgr::GetInst()->Init();
+	BlockMgr::GetInst()->Init();
 	
 	return S_OK;
 }

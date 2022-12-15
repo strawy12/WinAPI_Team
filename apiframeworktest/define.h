@@ -73,3 +73,14 @@ enum class EVENT_TYPE
 
 	END,
 };
+
+enum class MONSTER_TYPE 
+{
+	MUSHROOM,
+	OCTOPUS,
+	PENGUIN,
+	PINKBEEN,
+	SSLIME,
+
+	END,
+};

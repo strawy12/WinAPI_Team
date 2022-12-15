@@ -68,6 +68,9 @@
     <Filter Include="Engine\03. Manager\SoundMgr">
       <UniqueIdentifier>{e09d7cab-b2dc-4a5f-8924-8af5317c88d2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\03. Manager\BlockMgr">
+      <UniqueIdentifier>{aee1c333-1d97-4b53-8c74-4b9252b6321f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core.h">
@@ -157,6 +160,10 @@
     <ClInclude Include="Scene_01.h">
       <Filter>Engine\05. Scene</Filter>
     </ClInclude>
+    <ClInclude Include="Block.h" />
+    <ClInclude Include="BlockMgr.h">
+      <Filter>Engine\03. Manager\BlockMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="apiframeworktest.rc">
@@ -241,6 +248,10 @@
     </ClCompile>
     <ClCompile Include="Scene_01.cpp">
       <Filter>Engine\05. Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Block.cpp" />
+    <ClCompile Include="BlockMgr.cpp">
+      <Filter>Engine\03. Manager\BlockMgr</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
