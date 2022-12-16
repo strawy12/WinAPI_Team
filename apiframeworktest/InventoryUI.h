@@ -1,11 +1,6 @@
 #pragma once
 #include "Object.h"
 
-struct InventoryBoxUI
-{
-	RECT rt;
-	bool isClick;
-};
 
 class InventoryUI : public Object
 {
@@ -16,12 +11,12 @@ public:
 	virtual void Init() override;
 	virtual void Update() override;
 	virtual void Render(HDC hdc) override;
-	CLONE(InventoryUI);
+	CLONE(InventoryUI)
 
 	void CreateBoxUI();
 
 private:
-	Vec2 m_BGSize;
+	Vec2 vScale;
 	RECT m_padding;
 	float m_spalling;
 

@@ -100,9 +100,6 @@
     <ClInclude Include="BWindow.h">
       <Filter>Engine\02. Core</Filter>
     </ClInclude>
-    <ClInclude Include="Vec2.h">
-      <Filter>Engine\01. Header</Filter>
-    </ClInclude>
     <ClInclude Include="TimeMgr.h">
       <Filter>Engine\03. Manager\TimeMgr</Filter>
     </ClInclude>
@@ -163,6 +160,13 @@
     <ClInclude Include="Block.h" />
     <ClInclude Include="BlockMgr.h">
       <Filter>Engine\03. Manager\BlockMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="InventoryUI.h" />
+    <ClInclude Include="Vec2.h">
+      <Filter>Engine\02. Core</Filter>
+    </ClInclude>
+    <ClInclude Include="PyramidUI.h">
+      <Filter>Engine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -252,6 +256,10 @@
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="BlockMgr.cpp">
       <Filter>Engine\03. Manager\BlockMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="InventoryUI.cpp" />
+    <ClCompile Include="PyramidUI.cpp">
+      <Filter>Engine</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

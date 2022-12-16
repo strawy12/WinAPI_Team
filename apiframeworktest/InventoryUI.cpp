@@ -4,7 +4,7 @@
 #include "KeyMgr.h"
 
 InventoryUI::InventoryUI()
-	: m_BGSize{}
+	: vScale{}
 {
 }
 
@@ -15,7 +15,7 @@ InventoryUI::~InventoryUI()
 void InventoryUI::Init()
 {
 	SetPos(Vec2(SCREEN_WIDTH / 2, SCREEN_HEIGHT - 50));
-	m_BGSize = { SCREEN_WIDTH - 50,  50 };
+	vScale = { SCREEN_WIDTH - 50,  50 };
 	m_spalling = 10.f;
 	m_padding = { 10,5,10,5 };
 
@@ -60,10 +60,10 @@ void InventoryUI::Render(HDC hdc)
 	HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, bgBrush);
 
 	Rectangle(hdc
-		, (int)(vPos.x - m_BGSize.x / 2.f)
-		, (int)(vPos.y - m_BGSize.y / 2.f)
-		, (int)(vPos.x + m_BGSize.x / 2.f)
-		, (int)(vPos.y + m_BGSize.y / 2.f));
+		, (int)(vPos.x - vScale.x / 2.f)
+		, (int)(vPos.y - vScale.y / 2.f)
+		, (int)(vPos.x + vScale.x / 2.f)
+		, (int)(vPos.y + vScale.y / 2.f));
 
 	SelectObject(hdc, oldBrush);
 
@@ -96,10 +96,10 @@ void InventoryUI::CreateBoxUI()
 {
 	Vec2 vPos = GetPos();
 
-	Vec2 startPos = Vec2(vPos.x - m_BGSize.x / 2.f + m_padding.left, vPos.y - m_BGSize.y / 2.f + m_padding.top);
+	Vec2 startPos = Vec2(vPos.x - vScale.x / 2.f + m_padding.left, vPos.y - vScale.y / 2.f + m_padding.top);
 
-	Vec2 blockSize = Vec2(((m_BGSize.x - (m_padding.left + m_padding.right) - (m_spalling * (MAX_BLOCK_COUNT -1))) / MAX_BLOCK_COUNT),
-		m_BGSize.y - (m_padding.top + m_padding.bottom));
+	Vec2 blockSize = Vec2(((vScale.x - (m_padding.left + m_padding.right) - (m_spalling * (MAX_BLOCK_COUNT -1))) / MAX_BLOCK_COUNT),
+		vScale.y - (m_padding.top + m_padding.bottom));
 
 	for (int i = 0; i < MAX_BLOCK_COUNT; ++i)
 	{

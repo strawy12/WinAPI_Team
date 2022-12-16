@@ -12,7 +12,7 @@ BlockMgr::~BlockMgr()
 
 void BlockMgr::Init()
 {
-	CreateMonsterTypes();
+	//CreateMonsterTypes();
 }
 
 void BlockMgr::CreateMonsterTypes()

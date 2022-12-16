@@ -86,3 +86,9 @@ enum class MONSTER_TYPE
 
 	END,
 };
+
+struct InventoryBoxUI
+{
+	RECT rt;
+	bool isClick;
+};
