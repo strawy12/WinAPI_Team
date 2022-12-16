@@ -13,11 +13,15 @@ BlockMgr::~BlockMgr()
 
 void BlockMgr::Init()
 {
+<<<<<<< HEAD
+	//CreateMonsterTypes();
+=======
 	m_inventoryUI = new InventoryUI;
 	m_inventoryUI->Init();
 
 	CreateObject(m_inventoryUI, GROUP_TYPE::DEFAULT);
 	CreateMonsterTypes();
+>>>>>>> main
 }
 
 void BlockMgr::CreateMonsterTypes()
