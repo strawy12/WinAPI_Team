@@ -2,6 +2,7 @@
 #include "Core.h"
 #include "InventoryUI.h"
 #include "KeyMgr.h"
+#include "Block.h"
 
 InventoryUI::InventoryUI()
 	: m_BGSize{}
@@ -24,37 +25,15 @@ void InventoryUI::Init()
 
 void InventoryUI::Update()
 {
-		POINT pt;
-		GetCursorPos(&m_mousept);
-		ScreenToClient(Core::GetInst()->GetWndHandle(), &m_mousept);
-		int a;
-		for (int i = 0; i < MAX_BLOCK_COUNT; ++i)
-		{
-			if (PtInRect(&m_uiBoxVec[i].rt, m_mousept))
-			{
-				m_uiBoxVec[i].isClick = true;
-			}
-			else
-			{
-				m_uiBoxVec[i].isClick = false;
-			}
-
-		}
-
-
+	if (KEY_UP(KEY::LBTN))
+	{
+		PtInBoxUI();
+	}
 }
 
 void InventoryUI::Render(HDC hdc)
 {
-	/*TCHAR szTemp[256];
-	wstring str;
-	LONG x = m_mousept.x;
-	LONG y = m_mousept.y;
-	swprintf_s(szTemp, TEXT("mouse pos: %ld %ld"), x, y);
-	OutputDebugString(szTemp);*/
 	Vec2 vPos = GetPos();
-	//¸¶Á¨Å¸ »ö»ó »¬¶§ transparent: Åõ¸íÇÑ
-	// bmp 
 
 	HBRUSH bgBrush = CreateSolidBrush(RGB(255, 0, 0));
 	HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, bgBrush);
@@ -88,6 +67,7 @@ void InventoryUI::Render(HDC hdc)
 		}
 	}
 
+
 	DeleteObject(bgBrush);
 	DeleteObject(blockBrush);
 }
@@ -111,7 +91,36 @@ void InventoryUI::CreateBoxUI()
 	  (int)(pos.x)
 	, (int)(pos.y)
 	, (int)(pos.x + blockSize.x)
-	, (int)(pos.y + blockSize.y) }, false});
+	, (int)(pos.y + blockSize.y) }, nullptr,false});
+	}
+}
+
+void InventoryUI::AddBlock(int idx, Block* block)
+{
+	m_uiBoxVec[idx].block = block;
+	Vec2 pos;
+	pos.x = m_uiBoxVec[idx].rt.left + (m_uiBoxVec[idx].rt.right - m_uiBoxVec[idx].rt.left) / 2;
+	pos.y = m_uiBoxVec[idx].rt.top + (m_uiBoxVec[idx].rt.bottom - m_uiBoxVec[idx].rt.top) / 2;
+	m_uiBoxVec[idx].block->SetPos(pos);
+	m_uiBoxVec[idx].block->SetScale(Vec2(3,3));
+}
+
+void InventoryUI::PtInBoxUI()
+{
+	POINT pt;
+	GetCursorPos(&m_mousept);
+	ScreenToClient(Core::GetInst()->GetWndHandle(), &m_mousept);
+	for (int i = 0; i < MAX_BLOCK_COUNT; ++i)
+	{
+		if (m_uiBoxVec[i].block != nullptr && PtInRect(&m_uiBoxVec[i].rt, m_mousept))
+		{
+			m_selectBoxUI = &m_uiBoxVec[i];
+			m_uiBoxVec[i].isClick = true;
+		}
+		else
+		{
+			m_uiBoxVec[i].isClick = false;
+		}
 	}
 }
 
