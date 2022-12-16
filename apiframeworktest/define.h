@@ -34,10 +34,10 @@ enum class KEY
 	RIGHT,
 	UP,
 	DOWN,
-	Q,W,E,R,T,Y,U,I,O,P,
-	A,S,D,F,G,Z,X,C,V,B,
-	ALT,LSHIFT, CTRL, SPACE, ENTER, ESC,
-	LBTN,RBTN, 
+	Q, W, E, R, T, Y, U, I, O, P,
+	A, S, D, F, G, Z, X, C, V, B,
+	ALT, LSHIFT, CTRL, SPACE, ENTER, ESC,
+	LBTN, RBTN,
 	LAST // 끝 (END=는 있으니까)
 };
 
@@ -76,7 +76,7 @@ enum class EVENT_TYPE
 	END,
 };
 
-enum class MONSTER_TYPE 
+enum class MONSTER_TYPE
 {
 	MUSHROOM,
 	OCTOPUS,
@@ -91,4 +91,21 @@ struct InventoryBoxUI
 {
 	RECT rt;
 	bool isClick;
+};
+
+struct PyramidBoxUI
+{
+	RECT rt;
+	bool isClick;
+	bool isSelectable;
+	class Block* block;
+
+	bool IsSelectable()
+	{
+		if (isSelectable == true && block != nullptr)
+		{
+			return true;
+		}
+		else return false;
+	}
 };

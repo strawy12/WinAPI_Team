@@ -15,7 +15,7 @@ public:
 	void CreateBoxUI();
 
 private:
-	vector<InventoryBoxUI> m_uiBoxVec;
+	vector<PyramidBoxUI> m_uiBoxList;
 
 };
 

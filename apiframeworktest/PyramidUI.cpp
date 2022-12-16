@@ -1,8 +1,10 @@
 #include "pch.h"
 #include "PyramidUI.h"
+#include "Core.h"
+#include "KeyMgr.h"
 
 PyramidUI::PyramidUI()
-	: m_uiBoxVec{}
+	: m_uiBoxList{}
 {
 }
 
@@ -13,7 +15,7 @@ PyramidUI::~PyramidUI()
 void PyramidUI::Init()
 {
 	SetPos(Vec2((SCREEN_WIDTH / 2), ((SCREEN_HEIGHT / 2 - 30))));
-	SetScale(Vec2((SCREEN_WIDTH / 2 - 50), (SCREEN_HEIGHT / 2 - 60)));
+	SetScale(Vec2((SCREEN_WIDTH - 100), (SCREEN_HEIGHT - 120)));
 	CreateBoxUI();
 }
 
@@ -35,20 +37,20 @@ void PyramidUI::Render(HDC hdc)
 
 	HBRUSH blockBrush = CreateSolidBrush(RGB(0, 0, 0));
 
-	for (int i = 0; i < m_uiBoxVec.size(); ++i)
+	for (int i = 0; i < m_uiBoxList.size(); ++i)
 	{
-		if (m_uiBoxVec[i].isClick)
+		if (m_uiBoxList[i].isClick)
 		{
 			oldBrush = (HBRUSH)SelectObject(hdc, blockBrush);
 		}
 
 		Rectangle(hdc
-			, m_uiBoxVec[i].rt.left
-			, m_uiBoxVec[i].rt.top
-			, m_uiBoxVec[i].rt.right
-			, m_uiBoxVec[i].rt.bottom);
+			, m_uiBoxList[i].rt.left
+			, m_uiBoxList[i].rt.top
+			, m_uiBoxList[i].rt.right
+			, m_uiBoxList[i].rt.bottom);
 
-		if (m_uiBoxVec[i].isClick)
+		if (m_uiBoxList[i].isClick)
 		{
 			SelectObject(hdc, oldBrush);
 		}
@@ -62,34 +64,57 @@ void PyramidUI::CreateBoxUI()
 {
     Vec2 vPos = GetPos();
     Vec2 vScale = GetScale();
+	float boxSize = 69.f;
 
     vPos.x -= vScale.x / 2.f;
-    vPos.y += vScale.y / 2.f + 40;
+    vPos.y += vScale.y / 2.f - boxSize;
 
-    Vec2 boxSize = Vec2(40, 40);
+    Vec2 boxScale = Vec2(boxSize, boxSize);
     int n = 8;
 
     for (int m = 0; m < n; m++)
     {
         Vec2 startPos = vPos;
-        startPos.x += (m * 0.5f) * boxSize.x;
-        startPos.y -= boxSize.y * m;
+        startPos.x += (m * 0.5f) * boxScale.x;
+        startPos.y -= boxScale.y * m;
 
         for (int i = 0; i < n - m; i++)
         {
             Vec2 pos = startPos;
-            pos.x += i * boxSize.x;
+            pos.x += i * boxScale.x;
 
-            m_uiBoxVec.push_back({
+            m_uiBoxList.push_back({
                     RECT{
                   (int)(pos.x)
                 , (int)(pos.y)
-                , (int)(pos.x + boxSize.x)
-                , (int)(pos.y + boxSize.y) }, false });
+                , (int)(pos.x + boxScale.x)
+                , (int)(pos.y + boxScale.y) }, false, false, nullptr });
         }
     }
 }
 
 void PyramidUI::Update()
 {
+	if (KEY_UP(KEY::LBTN))
+	{
+		POINT pt;
+		GetCursorPos(&pt);
+		ScreenToClient(Core::GetInst()->GetWndHandle(), &pt);
+
+		for (int i = 0; i < m_uiBoxList.size(); ++i)
+		{
+			// 되냐 유무
+			if (m_uiBoxList[i].IsSelectable() == false)
+				continue;
+
+			if (PtInRect(&m_uiBoxList[i].rt, pt))
+			{
+				m_uiBoxList[i].isClick = true;
+			}
+			else
+			{
+				m_uiBoxList[i].isClick = false;
+			}
+		}
+	}
 }
