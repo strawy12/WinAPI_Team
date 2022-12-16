@@ -1,5 +1,5 @@
 #pragma once
-
+class InventoryUI;
 
 class BlockMgr
 {
@@ -15,9 +15,10 @@ public:
 
 public:
 	void CreateMonsterTypes();
-	void CreateMonster(MONSTER_TYPE type, Vec2 pos);
+	void CreateMonster(MONSTER_TYPE type, int idx);
 
 private:
 	MONSTER_TYPE m_monsterTypes[12];
+	InventoryUI* m_inventoryUI; 
 };
 

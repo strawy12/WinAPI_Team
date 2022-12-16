@@ -28,13 +28,12 @@ void Block::Render(HDC _dc)
 	int Width = (int)m_pImage->GetWidth();
 	int Height = (int)m_pImage->GetHeight();
 	//SetPos(Vec2(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2));
-	SetScale(Vec2(5, 5));
 	Vec2 vPos = GetPos();
 	Vec2 vScale = GetScale();
 	TransparentBlt(_dc
 		, (int)(vPos.x - (float)(Width * vScale.x / 2))
 		, (int)(vPos.y - (float)(Height * vScale.y / 2))
-		, Width * 10, Height * 10
+		, Width * vScale.x, Height * vScale.y
 		, m_pImage->GetDC()
 		, 0, 0, Width, Height
 		, RGB(255, 0, 255));
