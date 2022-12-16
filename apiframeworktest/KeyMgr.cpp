@@ -28,6 +28,7 @@ int g_arrVK[(int)KEY::LAST] =
 	'V',
 	'B',
 	VK_MENU, VK_LSHIFT, VK_CONTROL, VK_SPACE, VK_RETURN, VK_ESCAPE,
+	VK_LBUTTON, VK_RBUTTON
 };
 KeyMgr::KeyMgr()
 {
@@ -50,6 +51,7 @@ void KeyMgr::Update()
 	// 윈도우 포커싱 알아내기
 //	HWND hMainWnd = Core::GetInst()->GetWndHandle();
 	HWND hWnd = GetFocus();
+	
 	if(nullptr != hWnd)
 	{
 		for (int i = 0; i < (int)KEY::LAST; i++)
@@ -61,12 +63,12 @@ void KeyMgr::Update()
 				if (m_vecKey[i].bPrevCheck)
 				{
 					// 이전에도 눌려있었다.
-					m_vecKey[i].eState = KEY_STATE::HOLD;
+					m_vecKey[i].eState = KEY_STATE::STAY;
 				}
 				else
 				{
 					//이전에 눌려있지 않았다.
-					m_vecKey[i].eState = KEY_STATE::TAP;
+					m_vecKey[i].eState = KEY_STATE::DOWN;
 				}
 				m_vecKey[i].bPrevCheck = true;
 			}
@@ -76,7 +78,7 @@ void KeyMgr::Update()
 				if (m_vecKey[i].bPrevCheck)
 				{
 					//이전에 눌려있었다.
-					m_vecKey[i].eState = KEY_STATE::AWAY;
+					m_vecKey[i].eState = KEY_STATE::UP;
 				}
 				else
 				{
@@ -93,11 +95,11 @@ void KeyMgr::Update()
 		for (int i = 0; i < (int)KEY::LAST; i++)
 		{
 			m_vecKey[i].bPrevCheck = false;
-			if (m_vecKey[i].eState == KEY_STATE::TAP || m_vecKey[i].eState == KEY_STATE::HOLD)
+			if (m_vecKey[i].eState == KEY_STATE::DOWN || m_vecKey[i].eState == KEY_STATE::STAY)
 			{
-				m_vecKey[i].eState = KEY_STATE::AWAY;
+				m_vecKey[i].eState = KEY_STATE::UP;
 			}
-			else if (m_vecKey[i].eState == KEY_STATE::AWAY)
+			else if (m_vecKey[i].eState == KEY_STATE::UP)
 			{
 				m_vecKey[i].eState = KEY_STATE::NONE;
 			}

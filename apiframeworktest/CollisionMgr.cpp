@@ -141,7 +141,7 @@ void CollisionMgr::CheckGroup(GROUP_TYPE _eLeft, GROUP_TYPE _eRight)
 		Col = (UINT)_eLeft;
 	}
 	// 체크가 되어 있다면
-	if (m_arrCheck[Row] &= (1 << Col))
+	if (m_arrCheck[Row] & (1 << Col))
 	{
 		// 체크 풀기
 		m_arrCheck[Row] &= ~(1 << Col);
