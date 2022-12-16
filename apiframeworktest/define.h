@@ -86,26 +86,3 @@ enum class MONSTER_TYPE
 
 	END,
 };
-
-struct InventoryBoxUI
-{
-	RECT rt;
-	bool isClick;
-};
-
-struct PyramidBoxUI
-{
-	RECT rt;
-	bool isClick;
-	bool isSelectable;
-	class Block* block;
-
-	bool IsSelectable()
-	{
-		if (isSelectable == true && block != nullptr)
-		{
-			return true;
-		}
-		else return false;
-	}
-};

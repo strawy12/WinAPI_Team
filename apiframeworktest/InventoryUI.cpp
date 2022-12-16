@@ -3,6 +3,7 @@
 #include "InventoryUI.h"
 #include "KeyMgr.h"
 #include "Block.h"
+#include "BlockMgr.h"
 
 InventoryUI::InventoryUI()
 	: vScale{}
@@ -116,6 +117,7 @@ void InventoryUI::PtInBoxUI()
 		{
 			m_selectBoxUI = &m_uiBoxVec[i];
 			m_uiBoxVec[i].isClick = true;
+			BlockMgr::GetInst()->SelectInventoryBoxUI(m_uiBoxVec[i].block->GetBlockType());
 		}
 		else
 		{

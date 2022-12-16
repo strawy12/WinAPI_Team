@@ -1,6 +1,25 @@
 #pragma once
 #include"Object.h"
 
+struct PyramidBoxUI
+{
+	RECT rt;
+	bool isClick;
+	bool isSelectable;
+	class Block* block;
+	int left;
+	int right;
+
+	bool IsSelectable()
+	{
+		if (isSelectable == true && block == nullptr)
+		{
+			return true;
+		}
+		else return false;
+	}
+};
+
 class PyramidUI : public Object
 {
 public:
@@ -13,6 +32,7 @@ public:
 	CLONE(PyramidUI)
 
 	void CreateBoxUI();
+	void JudgeBoxUI(MONSTER_TYPE type);
 
 private:
 	vector<PyramidBoxUI> m_uiBoxList;

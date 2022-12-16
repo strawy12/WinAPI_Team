@@ -13,9 +13,7 @@ Scene_01::~Scene_01()
 
 void Scene_01::Enter()
 {
-    Object* pObj = new PyramidUI;
-    pObj->Init();   
-    CreateObject(pObj, GROUP_TYPE::UI);
+
 }
 
 void Scene_01::Exit()
