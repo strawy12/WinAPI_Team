@@ -1,6 +1,13 @@
 #pragma once
 #include "Object.h"
 
+struct InventoryBoxUI
+{
+	RECT rt;
+	class Block* block;
+	bool isClick;
+};
+
 class InventoryUI : public Object
 {
 public:
