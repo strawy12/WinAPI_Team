@@ -125,7 +125,7 @@ void InventoryUI::AddBlock(int idx, Block* block)
 	pos.x = m_uiBoxList[idx].rt.left + (m_uiBoxList[idx].rt.right - m_uiBoxList[idx].rt.left) / 2;
 	pos.y = m_uiBoxList[idx].rt.top + (m_uiBoxList[idx].rt.bottom - m_uiBoxList[idx].rt.top) / 2;
 	m_uiBoxList[idx].block->SetPos(pos);
-	m_uiBoxList[idx].block->SetScale(Vec2(3,3));
+	m_uiBoxList[idx].block->SetScale(Vec2(1,1));
 }
 
 void InventoryUI::PtInBoxUI()
