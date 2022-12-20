@@ -173,5 +173,5 @@ void PyramidUI::AddBlock(PyramidBoxUI* boxUI, Block* block)
 	pos.x = boxUI->rt.left + (boxUI->rt.right - boxUI->rt.left) / 2;
 	pos.y = boxUI->rt.top + (boxUI->rt.bottom - boxUI->rt.top) / 2;
 	boxUI->block->SetPos(pos);
-	boxUI->block->SetScale(Vec2(3, 3));
+	boxUI->block->SetScale(Vec2(2, 2));
 }
