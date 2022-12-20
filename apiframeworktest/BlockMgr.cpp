@@ -1,8 +1,8 @@
 #include "pch.h"
 #include "BlockMgr.h"
 #include"Block.h"
-#include"InventoryUI.h"
 #include "PyramidUI.h"
+#include"InventoryUI.h"
 
 BlockMgr::BlockMgr() 
 {
@@ -45,7 +45,32 @@ void BlockMgr::CreateMonster(MONSTER_TYPE type, int idx)
 	m_inventoryUI->AddBlock(idx, dynamic_cast<Block*>(pObj));
 }
 
-void BlockMgr::SelectInventoryBoxUI(MONSTER_TYPE type)
+void BlockMgr::SelectInventoryBoxUI(InventoryBoxUI* invenBoxUI)
 {
-	m_pyramidUI->JudgeBoxUI(type);
+	m_invenBoxUI = invenBoxUI;
+	m_pyramidUI->JudgeBoxUI(m_invenBoxUI->block->GetBlockType());
+}
+
+void BlockMgr::SelectPyramidBoxUI(PyramidBoxUI* pyBoxUI)
+{
+	if (m_invenBoxUI == nullptr)
+		return;
+
+	m_pyramidUI->AddBlock(pyBoxUI, m_invenBoxUI->block);
+	m_invenBoxUI->block = nullptr;
+
+	ResetBoxUI();
+
+	if (m_inventoryUI->AllUsedBlock())
+	{
+		CreateMonsterTypes();
+	}
+
+	// 여기에 게임 오버 조건 만들기
+}
+
+void BlockMgr::ResetBoxUI()
+{
+	m_inventoryUI->ResetBoxUI();
+	m_pyramidUI->ResetBoxUI();
 }

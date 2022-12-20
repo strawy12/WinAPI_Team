@@ -4,7 +4,6 @@
 struct PyramidBoxUI
 {
 	RECT rt;
-	bool isClick;
 	bool isSelectable;
 	class Block* block;
 	int left;
@@ -33,6 +32,11 @@ public:
 
 	void CreateBoxUI();
 	void JudgeBoxUI(MONSTER_TYPE type);
+	void ResetBoxUI();
+	void AddBlock(int idx, Block* block);
+	void AddBlock(PyramidBoxUI* boxUI, Block* block);
+
+
 
 private:
 	vector<PyramidBoxUI> m_uiBoxList;

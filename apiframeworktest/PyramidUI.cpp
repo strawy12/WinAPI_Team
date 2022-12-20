@@ -3,6 +3,7 @@
 #include "Core.h"
 #include "KeyMgr.h"
 #include "Block.h"
+#include "BlockMgr.h"
 
 PyramidUI::PyramidUI()
 	: m_uiBoxList{}
@@ -36,16 +37,11 @@ void PyramidUI::Render(HDC hdc)
 
 	SelectObject(hdc, oldBrush);
 
-	HBRUSH clickBrush = CreateSolidBrush(RGB(0, 0, 0));
-	HPEN selectablePen = CreatePen(PS_DASH, 1, RGB(1, 1, 0));
+	HPEN selectablePen = CreatePen(PS_SOLID, 1, RGB(255, 255, 0));
 	HPEN oldPen = nullptr;
 
 	for (int i = 0; i < m_uiBoxList.size(); ++i)
 	{
-		if (m_uiBoxList[i].isClick)
-		{
-			oldBrush = (HBRUSH)SelectObject(hdc, clickBrush);
-		}
 		if (m_uiBoxList[i].IsSelectable()) 
 		{
 			oldPen = (HPEN)SelectObject(hdc, selectablePen);
@@ -57,10 +53,6 @@ void PyramidUI::Render(HDC hdc)
 			, m_uiBoxList[i].rt.right
 			, m_uiBoxList[i].rt.bottom);
 
-		if (m_uiBoxList[i].isClick)
-		{
-			SelectObject(hdc, oldBrush);
-		}
 		if (m_uiBoxList[i].IsSelectable())
 		{
 			SelectObject(hdc, oldPen);
@@ -69,7 +61,6 @@ void PyramidUI::Render(HDC hdc)
 	}
 
 	DeleteObject(bgBrush);
-	DeleteObject(clickBrush);
 	DeleteObject(selectablePen);
 }
 
@@ -110,13 +101,15 @@ void PyramidUI::CreateBoxUI()
 				  (int)(pos.x)
 				, (int)(pos.y)
 				, (int)(pos.x + boxScale.x)
-				, (int)(pos.y + boxScale.y) }, false, false, nullptr, left, right });
+				, (int)(pos.y + boxScale.y) }, false, nullptr, left, right });
 		}
 	}
 }
 
 void PyramidUI::JudgeBoxUI(MONSTER_TYPE type)
 {
+	ResetBoxUI();
+
 	int left;
 	int	right;
 
@@ -137,6 +130,14 @@ void PyramidUI::JudgeBoxUI(MONSTER_TYPE type)
 	}
 }
 
+void PyramidUI::ResetBoxUI()
+{
+	for (int i = 0; i < m_uiBoxList.size(); i++)
+	{
+		m_uiBoxList[i].isSelectable = false;
+	}
+}
+
 void PyramidUI::Update()
 {
 	if (KEY_UP(KEY::LBTN))
@@ -152,12 +153,25 @@ void PyramidUI::Update()
 
 			if (PtInRect(&m_uiBoxList[i].rt, pt))
 			{
-				m_uiBoxList[i].isClick = true;
-			}
-			else
-			{
-				m_uiBoxList[i].isClick = false;
+				BlockMgr::GetInst()->SelectPyramidBoxUI(&m_uiBoxList[i]);
+				break;
 			}
 		}
 	}
+}
+
+void PyramidUI::AddBlock(int idx, Block* block)
+{
+	AddBlock(&m_uiBoxList[idx], block);
+}
+ 
+void PyramidUI::AddBlock(PyramidBoxUI* boxUI, Block* block)
+{
+	Vec2 pos;
+	boxUI->block = block;
+
+	pos.x = boxUI->rt.left + (boxUI->rt.right - boxUI->rt.left) / 2;
+	pos.y = boxUI->rt.top + (boxUI->rt.bottom - boxUI->rt.top) / 2;
+	boxUI->block->SetPos(pos);
+	boxUI->block->SetScale(Vec2(3, 3));
 }

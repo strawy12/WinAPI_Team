@@ -23,13 +23,28 @@ public:
 	void CreateBoxUI();
 	void AddBlock(int idx, Block* block);
 	void PtInBoxUI();
+	void ResetBoxUI();
+
+	bool AllUsedBlock()
+	{
+		for (auto boxUI : m_uiBoxList)
+		{
+			if (boxUI.block != nullptr)
+			{
+				return false;
+			}
+		}
+
+		return true;
+	}
 
 private:
-	Vec2 vScale;
+	Vec2 m_waitBoxScale;
+
 	RECT m_padding;
 	float m_spalling;
 
-	vector<InventoryBoxUI> m_uiBoxVec;
+	vector<InventoryBoxUI> m_uiBoxList;
 	POINT m_mousept;
 	InventoryBoxUI* m_selectBoxUI;
 	// 추후 이미지로 변경할 예정
