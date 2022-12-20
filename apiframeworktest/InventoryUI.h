@@ -27,7 +27,7 @@ public:
 
 	bool AllUsedBlock()
 	{
-		for (auto boxUI : m_uiBoxList)
+		for (auto& boxUI : m_uiBoxList)
 		{
 			if (boxUI.block != nullptr)
 			{
@@ -37,6 +37,9 @@ public:
 
 		return true;
 	}
+
+	vector<InventoryBoxUI> GetUIBoxList() { return m_uiBoxList; }
+
 
 private:
 	Vec2 m_waitBoxScale;

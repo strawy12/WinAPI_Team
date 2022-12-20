@@ -3,13 +3,14 @@
 #include"Block.h"
 #include "PyramidUI.h"
 #include"InventoryUI.h"
+#include"PyramidBoxUI.h"
 
-BlockMgr::BlockMgr() 
+BlockMgr::BlockMgr()
 {
 }
 
 BlockMgr::~BlockMgr()
-{ 
+{
 }
 
 void BlockMgr::Init()
@@ -26,11 +27,24 @@ void BlockMgr::Init()
 	CreateMonsterTypes();
 }
 
+void BlockMgr::FinalUpdate()
+{
+	for (auto& box : m_inventoryUI->GetUIBoxList())
+	{
+		if (box.block == nullptr) continue;
+
+		if (!m_pyramidUI->ExistSelectableBox(box.block->GetBlockType()))
+		{
+			int a = 10;
+		}
+	}
+}
+
 void BlockMgr::CreateMonsterTypes()
 {
 	srand(time(NULL));
 
-	for (int i = 0; i < 12; i++) 
+	for (int i = 0; i < 12; i++)
 	{
 		m_monsterTypes[i] = (MONSTER_TYPE)(rand() % 5);
 		CreateMonster(m_monsterTypes[i], i);
@@ -47,6 +61,13 @@ void BlockMgr::CreateMonster(MONSTER_TYPE type, int idx)
 
 void BlockMgr::SelectInventoryBoxUI(InventoryBoxUI* invenBoxUI)
 {
+	if (invenBoxUI->block == nullptr)
+	{
+		m_invenBoxUI = nullptr;
+		ResetBoxUI();
+		return;
+	}
+
 	m_invenBoxUI = invenBoxUI;
 	m_pyramidUI->JudgeBoxUI(m_invenBoxUI->block->GetBlockType());
 }
@@ -74,3 +95,4 @@ void BlockMgr::ResetBoxUI()
 	m_inventoryUI->ResetBoxUI();
 	m_pyramidUI->ResetBoxUI();
 }
+

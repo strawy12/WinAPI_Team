@@ -71,6 +71,9 @@
     <Filter Include="Engine\03. Manager\BlockMgr">
       <UniqueIdentifier>{aee1c333-1d97-4b53-8c74-4b9252b6321f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\04. Object\BoxUI">
+      <UniqueIdentifier>{8e32aa71-05eb-4d61-afd2-6abaf7e06ddf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core.h">
@@ -157,17 +160,25 @@
     <ClInclude Include="Scene_01.h">
       <Filter>Engine\05. Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Block.h" />
     <ClInclude Include="BlockMgr.h">
       <Filter>Engine\03. Manager\BlockMgr</Filter>
     </ClInclude>
-    <ClInclude Include="InventoryUI.h" />
     <ClInclude Include="Vec2.h">
       <Filter>Engine\02. Core</Filter>
     </ClInclude>
-    <ClInclude Include="PyramidUI.h">
-      <Filter>Engine</Filter>
+    <ClInclude Include="Block.h">
+      <Filter>Engine\04. Object</Filter>
     </ClInclude>
+    <ClInclude Include="InventoryUI.h">
+      <Filter>Engine\04. Object</Filter>
+    </ClInclude>
+    <ClInclude Include="PyramidUI.h">
+      <Filter>Engine\04. Object</Filter>
+    </ClInclude>
+    <ClInclude Include="BoxUI.h">
+      <Filter>Engine\04. Object\BoxUI</Filter>
+    </ClInclude>
+    <ClInclude Include="PyramidBoxUI.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="apiframeworktest.rc">
@@ -253,13 +264,21 @@
     <ClCompile Include="Scene_01.cpp">
       <Filter>Engine\05. Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Block.cpp" />
     <ClCompile Include="BlockMgr.cpp">
       <Filter>Engine\03. Manager\BlockMgr</Filter>
     </ClCompile>
-    <ClCompile Include="InventoryUI.cpp" />
-    <ClCompile Include="PyramidUI.cpp">
-      <Filter>Engine</Filter>
+    <ClCompile Include="Block.cpp">
+      <Filter>Engine\04. Object</Filter>
     </ClCompile>
+    <ClCompile Include="InventoryUI.cpp">
+      <Filter>Engine\04. Object</Filter>
+    </ClCompile>
+    <ClCompile Include="PyramidUI.cpp">
+      <Filter>Engine\04. Object</Filter>
+    </ClCompile>
+    <ClCompile Include="BoxUI.cpp">
+      <Filter>Engine\04. Object\BoxUI</Filter>
+    </ClCompile>
+    <ClCompile Include="PyramidBoxUI.cpp" />
   </ItemGroup>
 </Project>

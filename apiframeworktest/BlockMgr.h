@@ -2,8 +2,8 @@
 class InventoryUI;
 class PyramidUI;
 
-struct PyramidBoxUI;
-struct InventoryBoxUI;
+class PyramidBoxUI;
+class InventoryBoxUI;
 
 class BlockMgr
 {
@@ -16,6 +16,7 @@ private:
 
 public:
 	void Init();
+	void FinalUpdate();
 
 public:
 	void CreateMonsterTypes();

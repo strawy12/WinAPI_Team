@@ -1,23 +1,8 @@
 #pragma once
 #include"Object.h"
 
-struct PyramidBoxUI
-{
-	RECT rt;
-	bool isSelectable;
-	class Block* block;
-	int left;
-	int right;
-
-	bool IsSelectable()
-	{
-		if (isSelectable == true && block == nullptr)
-		{
-			return true;
-		}
-		else return false;
-	}
-};
+class PyramidBoxUI;
+class Block;
 
 class PyramidUI : public Object
 {
@@ -36,10 +21,12 @@ public:
 	void AddBlock(int idx, Block* block);
 	void AddBlock(PyramidBoxUI* boxUI, Block* block);
 
+	bool ExistSelectableBox(MONSTER_TYPE type);
 
 
 private:
-	vector<PyramidBoxUI> m_uiBoxList;
+	vector<PyramidBoxUI*> m_uiBoxList;
+
 
 };
 

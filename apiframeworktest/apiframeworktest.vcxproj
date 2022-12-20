@@ -158,6 +158,7 @@
     <ClInclude Include="apiframeworktest.h" />
     <ClInclude Include="Block.h" />
     <ClInclude Include="BlockMgr.h" />
+    <ClInclude Include="BoxUI.h" />
     <ClInclude Include="BWindow.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
@@ -178,6 +179,7 @@
     <ClInclude Include="Object.h" />
     <ClInclude Include="PathMgr.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="PyramidBoxUI.h" />
     <ClInclude Include="PyramidUI.h" />
     <ClInclude Include="Res.h" />
     <ClInclude Include="ResMgr.h" />
@@ -197,6 +199,7 @@
     <ClCompile Include="Animator.cpp" />
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="BlockMgr.cpp" />
+    <ClCompile Include="BoxUI.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="CollisionMgr.cpp" />
@@ -215,6 +218,7 @@
     </ClCompile>
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="PathMgr.cpp" />
+    <ClCompile Include="PyramidBoxUI.cpp" />
     <ClCompile Include="PyramidUI.cpp" />
     <ClCompile Include="Res.cpp" />
     <ClCompile Include="ResMgr.cpp" />

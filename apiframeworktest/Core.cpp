@@ -38,7 +38,12 @@ int Core::Init(HWND _hWnd, POINT _ptResolution)
 	m_ptResolution = _ptResolution;
 	RECT rt = { 0, 0, m_ptResolution.x, m_ptResolution.y };
 	AdjustWindowRect(&rt, WS_OVERLAPPEDWINDOW, true);
-	SetWindowPos(m_hWnd, nullptr, 100, 100, rt.right - rt.left, rt.bottom - rt.top, 0);
+	int Resolutionx = GetSystemMetrics(SM_CXSCREEN);
+	int Resolutiony = GetSystemMetrics(SM_CYSCREEN);
+	int winposx = Resolutionx / 2 - SCREEN_WIDTH / 2;
+	int winposy = Resolutiony / 2 - SCREEN_HEIGHT / 2 - 50;
+
+	SetWindowPos(m_hWnd, nullptr, winposx, winposy, rt.right - rt.left, rt.bottom - rt.top, 0);
 	m_hDC = GetDC(m_hWnd);
 	
 	// 이중 버퍼링 용도의 비트맵과 DC를 만든다.
@@ -65,6 +70,7 @@ void Core::Progress()
 {
 	Update();
 	Render();
+	BlockMgr::GetInst()->FinalUpdate();
 }
 
 void Core::Update()
