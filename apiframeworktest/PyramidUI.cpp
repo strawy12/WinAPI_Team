@@ -5,6 +5,7 @@
 #include "Block.h"
 #include "BlockMgr.h"
 #include "PyramidBoxUI.h"
+#include "SoundMgr.h"
 
 PyramidUI::PyramidUI()
 	: m_uiBoxList{}
@@ -159,6 +160,9 @@ void PyramidUI::AddBlock(PyramidBoxUI* boxUI, Block* block)
 	pos.y = rt.top + (rt.bottom - rt.top) / 2;
 	boxUI->GetBlock()->SetPos(pos);
 	boxUI->GetBlock()->SetScale(Vec2(2, 2));
+
+	SoundMgr::GetInst()->LoadSound(L"SetBox", true, L"Sound\\SetBox.mp3");
+	SoundMgr::GetInst()->Play(L"SetBox");
 }
 
 bool PyramidUI::ExistSelectableBox(BOX_TYPE type)

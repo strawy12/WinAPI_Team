@@ -1,4 +1,10 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8028: 중간 디렉터리(x64\Debug\)에 다른 프로젝트(apiframeworktest.vcxproj)에서 공유하는 파일이 포함되어 있습니다.  이로 인해 잘못된 정리 및 다시 빌드 동작이 수행될 수 있습니다.
-  SoundMgr.cpp
-C:\Users\peace\OneDrive\문서\WinAPI_Team\apiframeworktest\SoundMgr.cpp(30,9): warning C4101: 'size' :참조되지 않은 지역 변수입니다.
+  InventoryUI.cpp
+C:\Users\peace\OneDrive\문서\WinAPI_Team\apiframeworktest\InventoryUI.cpp(118,18): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\peace\OneDrive\문서\WinAPI_Team\apiframeworktest\InventoryUI.cpp(119,17): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\peace\OneDrive\문서\WinAPI_Team\apiframeworktest\InventoryUI.cpp(149,21): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\peace\OneDrive\문서\WinAPI_Team\apiframeworktest\InventoryUI.cpp(150,20): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\peace\OneDrive\문서\WinAPI_Team\apiframeworktest\InventoryUI.cpp(161,19): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\peace\OneDrive\문서\WinAPI_Team\apiframeworktest\InventoryUI.cpp(162,18): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\peace\OneDrive\문서\WinAPI_Team\apiframeworktest\InventoryUI.cpp(129,8): warning C4101: 'pt' :참조되지 않은 지역 변수입니다.
   apiframeworktest.vcxproj -> C:\Users\peace\OneDrive\문서\WinAPI_Team\OutPut\bin_debug\Gamep_winapiframework.exe

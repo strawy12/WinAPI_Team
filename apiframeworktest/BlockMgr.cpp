@@ -5,6 +5,7 @@
 #include"InventoryUI.h"
 #include"InventoryBoxUI.h"
 #include"PyramidBoxUI.h"
+#include "SoundMgr.h"
 
 BlockMgr::BlockMgr()
 {
@@ -86,6 +87,8 @@ void BlockMgr::SelectPyramidBoxUI(PyramidBoxUI* pyBoxUI)
 	if (m_inventoryUI->AllUsedBlock())
 	{
 		CreateMonsterTypes();
+		SoundMgr::GetInst()->LoadSound(L"ChageArray", true, L"Sound\\ChageArray.mp3");
+		SoundMgr::GetInst()->Play(L"ChageArray");
 	}
 
 	// 여기에 게임 오버 조건 만들기
