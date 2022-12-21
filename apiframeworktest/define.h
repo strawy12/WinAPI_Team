@@ -19,6 +19,7 @@
 #define SCREEN_HEIGHT 700
 
 #define MAX_BLOCK_COUNT 12
+#define DEFAULT_MAX_TIME 60
 
 enum class KEY_STATE
 {
@@ -86,4 +87,12 @@ enum class BOX_TYPE
 	PURADAC,
 
 	END,
+};
+
+enum class GAME_STATE
+{
+	TITLE,
+	SPAWNBLOCK,
+	GAME,
+
 };

@@ -16,12 +16,12 @@ public:
 	CLONE(PyramidUI)
 
 	void CreateBoxUI();
-	void JudgeBoxUI(MONSTER_TYPE type);
+	void JudgeBoxUI(BOX_TYPE type);
 	void ResetBoxUI();
 	void AddBlock(int idx, Block* block);
 	void AddBlock(PyramidBoxUI* boxUI, Block* block);
 
-	bool ExistSelectableBox(MONSTER_TYPE type);
+	bool ExistSelectableBox(BOX_TYPE type);
 
 
 private:

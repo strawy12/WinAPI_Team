@@ -5,8 +5,11 @@
 #include"InventoryUI.h"
 #include"InventoryBoxUI.h"
 #include"PyramidBoxUI.h"
+#include"TimeMgr.h"
 
 BlockMgr::BlockMgr()
+	:m_currentTime(0.f)
+	, m_maxTime(0.f)
 {
 }
 
@@ -28,17 +31,65 @@ void BlockMgr::Init()
 	CreateMonsterTypes();
 }
 
+void BlockMgr::Update()
+{
+	m_currentTime -= TimeMgr::GetInst()->GetfDT();
+	
+	if (m_currentTime <= 0.f)
+	{
+		int a;
+	}
+}
+
 void BlockMgr::FinalUpdate()
 {
+	bool isExistSelectableBox = false;
 	for (auto& box : m_inventoryUI->GetUIBoxList())
 	{
 		if (box->GetBlock() == nullptr) continue;
 
-		if (!m_pyramidUI->ExistSelectableBox(box->GetBlockType()))
+
+		if (isExistSelectableBox == false && m_pyramidUI->ExistSelectableBox(box->GetBlockType()))
 		{
-			int a = 10;
+			isExistSelectableBox = true;
 		}
 	}
+
+	if (isExistSelectableBox)
+	{
+		int a;
+	}
+}
+
+void BlockMgr::Render(HDC hdc)
+{
+	HBRUSH hNullBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
+	HBRUSH hOldBrush = (HBRUSH)SelectObject(hdc, hNullBrush);
+
+	Rectangle(hdc,
+		10, 40, 210, 70);
+
+	SelectObject(hdc, hOldBrush);
+
+	int size = (int)((m_currentTime / m_maxTime) * 200.f);
+
+	Rectangle(hdc,
+		10, 40, 10 + size, 70);
+
+	HFONT hFont = CreateFont(18, 0, 0, 0, FW_BOLD, FALSE, FALSE, FALSE, HANGEUL_CHARSET, 0, 0, 0, 0, L"³ª´®°íµñ");
+	HFONT oldFont = (HFONT)SelectObject(hdc, hFont);
+
+	SetTextColor(hdc, RGB(0, 0, 0));
+	SetBkMode(hdc, TRANSPARENT);
+
+	TCHAR szTemp[256];
+	swprintf_s(szTemp, TEXT("%d / %d"), (int)m_currentTime, (int)m_maxTime);
+	wstring str = szTemp;
+
+	TextOut(hdc, 80, 45, str.c_str(), str.length());
+
+	SelectObject(hdc, hFont);
+	DeleteObject(hFont);
 }
 
 void BlockMgr::CreateMonsterTypes()
@@ -47,13 +98,15 @@ void BlockMgr::CreateMonsterTypes()
 
 	for (int i = 0; i < 12; i++)
 	{
-		m_monsterTypes[i] = (MONSTER_TYPE)(rand() % 5);
+		m_monsterTypes[i] = (BOX_TYPE)(rand() % 5);
 		CreateMonster(m_monsterTypes[i], i);
 	}
 
+	SetMaxTime(DEFAULT_MAX_TIME - (m_cirCount++ * 12));
+
 }
 
-void BlockMgr::CreateMonster(MONSTER_TYPE type, int idx)
+void BlockMgr::CreateMonster(BOX_TYPE type, int idx)
 {
 	Object* pObj = new Block(type);
 	//CreateObject(pObj, GROUP_TYPE::DEFAULT);
