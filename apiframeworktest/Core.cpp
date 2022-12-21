@@ -62,7 +62,7 @@ int Core::Init(HWND _hWnd, POINT _ptResolution)
 	KeyMgr::GetInst()->Init();
 	SceneMgr::GetInst()->Init();
 	BlockMgr::GetInst()->Init();
-	
+
 	return S_OK;
 }
 

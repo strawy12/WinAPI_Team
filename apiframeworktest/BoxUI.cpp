@@ -33,11 +33,11 @@ void BoxUI::Render(HDC hdc)
 
 }
 
-MONSTER_TYPE BoxUI::GetBlockType()
+BOX_TYPE BoxUI::GetBlockType()
 {
 	if (m_block == nullptr)
 	{
-		return MONSTER_TYPE::NONE;
+		return BOX_TYPE::NONE;
 	}
 
 	return m_block->GetBlockType();

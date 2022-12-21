@@ -29,25 +29,50 @@ void ChangeScene(SCENE_TYPE _eNext)
 	EventMgr::GetInst()->AddEvent(evn);
 }
 
-wstring ToStringMonterType(MONSTER_TYPE type)
+wstring ToStringMonterType(BOX_TYPE type)
 {
 	switch (type)
 	{
-	case MONSTER_TYPE::MUSHROOM:
+	case BOX_TYPE::GFC:
 		return  L"MUSHROOM";
-	case MONSTER_TYPE::OCTOPUS:
+	case BOX_TYPE::HOSIC:
 		return  L"OCTOPUS";
 
-	case MONSTER_TYPE::PENGUIN:
+	case BOX_TYPE::KYOCHON:
 		return  L"PENGUIN";
 
-	case MONSTER_TYPE::PINKBEEN:
+	case BOX_TYPE::PERICANA:
 		return  L"PINKBEEN";
 
-	case MONSTER_TYPE::SSLIME:
+	case BOX_TYPE::PURADAC:
 		return  L"SSLIME";
 
 	default:
 		break;
 	}
+}
+
+wstring s2ws(const string& s)
+{
+	int len;
+	int slength = static_cast<int>(s.length()) + 1;
+	len = MultiByteToWideChar(CP_ACP, 0, s.c_str(), slength, 0, 0);
+	wchar_t* buf = new wchar_t[len];
+
+	::MultiByteToWideChar(CP_ACP, 0, s.c_str(), slength, buf, len);
+	wstring ret(buf);
+	delete[] buf;
+
+	return ret;
+}
+
+string ws2s(const wstring& ws)
+{
+	int len;
+	int slength = static_cast<int>(ws.length()) + 1;
+	len = WideCharToMultiByte(CP_ACP, 0, ws.c_str(), slength, 0, 0, 0, 0);
+	string ret(len, '\0');
+	WideCharToMultiByte(CP_ACP, 0, ws.c_str(), slength, &ret[0], len, 0, 0);
+
+	return ret;
 }

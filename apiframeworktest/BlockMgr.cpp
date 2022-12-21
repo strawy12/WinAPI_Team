@@ -47,13 +47,13 @@ void BlockMgr::CreateMonsterTypes()
 
 	for (int i = 0; i < 12; i++)
 	{
-		m_monsterTypes[i] = (MONSTER_TYPE)(rand() % 5);
+		m_monsterTypes[i] = (BOX_TYPE)(rand() % 5);
 		CreateMonster(m_monsterTypes[i], i);
 	}
 
 }
 
-void BlockMgr::CreateMonster(MONSTER_TYPE type, int idx)
+void BlockMgr::CreateMonster(BOX_TYPE type, int idx)
 {
 	Object* pObj = new Block(type);
 	//CreateObject(pObj, GROUP_TYPE::DEFAULT);

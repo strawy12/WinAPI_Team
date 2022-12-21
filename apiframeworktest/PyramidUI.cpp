@@ -88,7 +88,7 @@ void PyramidUI::CreateBoxUI()
 	}
 }
 
-void PyramidUI::JudgeBoxUI(MONSTER_TYPE type)
+void PyramidUI::JudgeBoxUI(BOX_TYPE type)
 {
 	ResetBoxUI();
 
@@ -161,7 +161,7 @@ void PyramidUI::AddBlock(PyramidBoxUI* boxUI, Block* block)
 	boxUI->GetBlock()->SetScale(Vec2(2, 2));
 }
 
-bool PyramidUI::ExistSelectableBox(MONSTER_TYPE type)
+bool PyramidUI::ExistSelectableBox(BOX_TYPE type)
 {
 	int left;
 	int	right;

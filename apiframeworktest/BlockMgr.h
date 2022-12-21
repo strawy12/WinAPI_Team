@@ -20,13 +20,13 @@ public:
 
 public:
 	void CreateMonsterTypes();
-	void CreateMonster(MONSTER_TYPE type, int idx);
+	void CreateMonster(BOX_TYPE type, int idx);
 	void SelectInventoryBoxUI(InventoryBoxUI* invenBoxUI);
 	void SelectPyramidBoxUI(PyramidBoxUI* pyBoxUI);
 	void ResetBoxUI();
 
 private:
-	MONSTER_TYPE m_monsterTypes[12];
+	BOX_TYPE m_monsterTypes[12];
 	InventoryUI* m_inventoryUI; 
 	PyramidUI* m_pyramidUI;
 

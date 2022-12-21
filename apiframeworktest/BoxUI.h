@@ -21,7 +21,7 @@ public:
 
 	const RECT& GetRect() { return m_rt; }
 	Block* GetBlock() { return m_block; }
-	MONSTER_TYPE GetBlockType();
+	BOX_TYPE GetBlockType();
 
 	void SetBlock(Block* block) { m_block = block; }
 	void SetRect(RECT& rt) { m_rt = rt; }

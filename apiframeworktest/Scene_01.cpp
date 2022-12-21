@@ -1,4 +1,4 @@
-#include "pch.h"
+ #include "pch.h"
 #include "Scene_01.h"
 #include "KeyMgr.h"
 #include "InventoryUI.h"
@@ -6,6 +6,7 @@
 #include "ResMgr.h"
 #include "Image.h"
 #include "Object.h"
+#include "SoundMgr.h"
 
 Scene_01::Scene_01()
 {
@@ -18,7 +19,8 @@ Scene_01::~Scene_01()
 
 void Scene_01::Enter()
 {
-
+	SoundMgr::GetInst()->LoadSound(L"TitleBGM", true, L"Sound\\TitleBGM.mp3");
+	SoundMgr::GetInst()->Play(L"TitleBGM");
 }
 
 void Scene_01::Exit()
