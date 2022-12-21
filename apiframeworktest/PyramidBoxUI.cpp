@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "PyramidBoxUI.h"
+#include "Block.h"
 
 
 PyramidBoxUI::PyramidBoxUI(int left, int right)
@@ -32,6 +33,12 @@ void PyramidBoxUI::Render(HDC hdc)
 
 		SelectObject(hdc, oldPen);
 		SelectObject(hdc, oldBrush);
+	}
+
+
+	if (m_block)
+	{
+		m_block->Render(hdc);
 	}
 
 	DeleteObject(selectablePenBrush);

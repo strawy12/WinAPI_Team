@@ -1,12 +1,8 @@
 #pragma once
 #include "Object.h"
 
-struct InventoryBoxUI
-{
-	RECT rt;
-	class Block* block;
-	bool isClick;
-};
+class InventoryBoxUI;
+class Block;
 
 class InventoryUI : public Object
 {
@@ -25,20 +21,9 @@ public:
 	void PtInBoxUI();
 	void ResetBoxUI();
 
-	bool AllUsedBlock()
-	{
-		for (auto& boxUI : m_uiBoxList)
-		{
-			if (boxUI.block != nullptr)
-			{
-				return false;
-			}
-		}
+	bool AllUsedBlock();
 
-		return true;
-	}
-
-	vector<InventoryBoxUI> GetUIBoxList() { return m_uiBoxList; }
+	vector<InventoryBoxUI*> GetUIBoxList() { return m_uiBoxList; }
 
 
 private:
@@ -47,7 +32,7 @@ private:
 	RECT m_padding;
 	float m_spalling;
 
-	vector<InventoryBoxUI> m_uiBoxList;
+	vector<InventoryBoxUI*> m_uiBoxList;
 	POINT m_mousept;
 	InventoryBoxUI* m_selectBoxUI;
 	// 추후 이미지로 변경할 예정

@@ -153,6 +153,8 @@ void PyramidUI::AddBlock(PyramidBoxUI* boxUI, Block* block)
 	const RECT& rt = boxUI->GetRect();
 	boxUI->SetBlock(block);
 
+	// 생성 이펙트 넣어보자!
+
 	pos.x = rt.left + (rt.right - rt.left) / 2;
 	pos.y = rt.top + (rt.bottom - rt.top) / 2;
 	boxUI->GetBlock()->SetPos(pos);

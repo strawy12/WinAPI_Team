@@ -30,6 +30,7 @@ void BoxUI::Render(HDC hdc)
 {
 	BackgroundRender(hdc);
 	OutlineRender(hdc);
+
 }
 
 MONSTER_TYPE BoxUI::GetBlockType()
@@ -66,19 +67,34 @@ void BoxUI::BackgroundRender(HDC hdc)
 	Vec2 vPos = GetPos();
 	Vec2 vScale = GetScale();
 
-	BitBlt(hdc
+	HDC alphaDC = CreateCompatibleDC(hdc);
+
+	BitBlt(alphaDC
 		, (int)(vPos.x)
 		, (int)(vPos.y)
 		, vScale.x, vScale.y,
-		m_pBGImage->GetDC(),
+		hdc,
 		Width, Height, SRCCOPY);
+
+	TransparentBlt(alphaDC
+		, (int)(vPos.x)
+		, (int)(vPos.y)
+		, vScale.x, vScale.y
+		, m_pOutLineImage->GetDC()
+		, 0, 0, Width, Height
+		, RGB(255, 0, 255));
 
 	AlphaBlend(hdc
 		, (int)(vPos.x)
 		, (int)(vPos.y)
 		, vScale.x, vScale.y,
-		m_pBGImage->GetDC(),
+		alphaDC,
 		0, 0, Width, Height, m_bf);
 
+	
+
+
+
+	DeleteDC(alphaDC);
 }
 

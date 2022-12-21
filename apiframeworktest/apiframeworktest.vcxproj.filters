@@ -179,6 +179,7 @@
       <Filter>Engine\04. Object\BoxUI</Filter>
     </ClInclude>
     <ClInclude Include="PyramidBoxUI.h" />
+    <ClInclude Include="InventoryBoxUI.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="apiframeworktest.rc">
@@ -280,5 +281,6 @@
       <Filter>Engine\04. Object\BoxUI</Filter>
     </ClCompile>
     <ClCompile Include="PyramidBoxUI.cpp" />
+    <ClCompile Include="InventoryBoxUI.cpp" />
   </ItemGroup>
 </Project>

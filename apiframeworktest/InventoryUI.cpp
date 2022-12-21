@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Core.h"
 #include "InventoryUI.h"
+#include "InventoryBoxUI.h"
 #include "KeyMgr.h"
 #include "Block.h"
 #include "BlockMgr.h"
@@ -46,7 +47,6 @@ void InventoryUI::Render(HDC hdc)
 	HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, bgBrush);
 
 	// Background
-
 	Rectangle(hdc
 		, (int)(vPos.x - vScale.x / 2.f)
 		, (int)(vPos.y - vScale.y / 2.f)
@@ -55,27 +55,9 @@ void InventoryUI::Render(HDC hdc)
 
 	SelectObject(hdc, oldBrush);
 
-	HBRUSH blockBrush = CreateSolidBrush(RGB(255, 222, 121));
-
-
-	// BoxUI
 	for (int i = 0; i < m_uiBoxList.size(); ++i)
 	{
-		if (m_uiBoxList[i].isClick)
-		{
-			oldBrush = (HBRUSH)SelectObject(hdc, blockBrush);
-		}
-
-		Rectangle(hdc
-			, m_uiBoxList[i].rt.left
-			, m_uiBoxList[i].rt.top
-			, m_uiBoxList[i].rt.right
-			, m_uiBoxList[i].rt.bottom);
-
-		if (m_uiBoxList[i].isClick)
-		{
-			SelectObject(hdc, oldBrush);
-		}
+		m_uiBoxList[i]->Render(hdc);
 	}
 
 	/*HBRUSH waitBoxBrush = CreateSolidBrush(RGB(0, 0, 0));
@@ -92,7 +74,6 @@ void InventoryUI::Render(HDC hdc)
 
 	DeleteObject(waitBoxBrush);*/
 	DeleteObject(bgBrush);
-	DeleteObject(blockBrush);
 }
 
 void InventoryUI::CreateBoxUI()
@@ -110,23 +91,33 @@ void InventoryUI::CreateBoxUI()
 		Vec2 pos = startPos;
 		pos.x += i * (int)(blockSize.x + m_spalling);
 
-		m_uiBoxList.push_back({
-		RECT{
-	  (int)(pos.x)
-	, (int)(pos.y)
-	, (int)(pos.x + blockSize.x)
-	, (int)(pos.y + blockSize.y) }, nullptr,false });
+		InventoryBoxUI* boxUI = new InventoryBoxUI;
+		RECT rt = {
+			  (int)(pos.x)
+			, (int)(pos.y)
+			, (int)(pos.x + blockSize.x)
+			, (int)(pos.y + blockSize.y) };
+
+		boxUI->SetRect(rt);
+
+		boxUI->SetPos(pos);
+		boxUI->SetScale(blockSize);
+
+		m_uiBoxList.push_back(boxUI);
 	}
 }
 
 void InventoryUI::AddBlock(int idx, Block* block)
 {
-	m_uiBoxList[idx].block = block;
 	Vec2 pos;
-	pos.x = m_uiBoxList[idx].rt.left + (m_uiBoxList[idx].rt.right - m_uiBoxList[idx].rt.left) / 2;
-	pos.y = m_uiBoxList[idx].rt.top + (m_uiBoxList[idx].rt.bottom - m_uiBoxList[idx].rt.top) / 2;
-	m_uiBoxList[idx].block->SetPos(pos);
-	m_uiBoxList[idx].block->SetScale(Vec2(1, 1));
+	const RECT& rt = m_uiBoxList[idx]->GetRect();
+
+	m_uiBoxList[idx]->SetBlock(block);
+
+	pos.x = rt.left + (rt.right - rt.left) / 2;
+	pos.y = rt.top + (rt.bottom - rt.top) / 2;
+	m_uiBoxList[idx]->GetBlock()->SetPos(pos);
+	m_uiBoxList[idx]->GetBlock()->SetScale(Vec2(1, 1));
 }
 
 void InventoryUI::PtInBoxUI()
@@ -137,42 +128,59 @@ void InventoryUI::PtInBoxUI()
 
 	for (int i = 0; i < m_uiBoxList.size(); ++i)
 	{
-		if (PtInRect(&m_uiBoxList[i].rt, m_mousept))
+		if (PtInRect(&m_uiBoxList[i]->GetRect(), m_mousept))
 		{
-			m_selectBoxUI = &m_uiBoxList[i];
-			BlockMgr::GetInst()->SelectInventoryBoxUI(&m_uiBoxList[i]);
+			m_selectBoxUI = m_uiBoxList[i];
+			BlockMgr::GetInst()->SelectInventoryBoxUI(m_uiBoxList[i]);
 		}
 		else
 		{
-			m_uiBoxList[i].isClick = false;
+			m_uiBoxList[i]->SetIsClick(false);
 
-			if (m_uiBoxList[i].block != nullptr)
+			if (m_uiBoxList[i]->GetBlock() != nullptr)
 			{
 				Vec2 pos;
-				pos.x = m_uiBoxList[i].rt.left + (m_uiBoxList[i].rt.right - m_uiBoxList[i].rt.left) / 2;
-				pos.y = m_uiBoxList[i].rt.top + (m_uiBoxList[i].rt.bottom - m_uiBoxList[i].rt.top) / 2;
-				m_uiBoxList[i].block->SetPos(pos);
+				const RECT& rt = m_uiBoxList[i]->GetRect();
+				m_uiBoxList[i]->SetIsClick(false);
+				pos.x = rt.left + (rt.right - rt.left) / 2;
+				pos.y = rt.top + (rt.bottom - rt.top) / 2;
+				m_uiBoxList[i]->GetBlock()->SetPos(pos);
 			}
 		}
 	}
 
-	if (m_selectBoxUI != nullptr && m_selectBoxUI->block != nullptr)
+	if (m_selectBoxUI != nullptr && m_selectBoxUI->GetBlock() != nullptr)
 	{
-		m_selectBoxUI->isClick = true;
 		Vec2 pos;
-		pos.x = m_selectBoxUI->rt.left + (m_selectBoxUI->rt.right - m_selectBoxUI->rt.left) / 2;
-		pos.y = m_selectBoxUI->rt.top + (m_selectBoxUI->rt.bottom - m_selectBoxUI->rt.top) / 2;
+		const RECT& rt = m_selectBoxUI->GetRect();
+		m_selectBoxUI->SetIsClick(true);
+		pos.x = rt.left + (rt.right - rt.left) / 2;
+		pos.y = rt.top + (rt.bottom - rt.top) / 2;
 		pos.y -= 16;
-		m_selectBoxUI->block->SetPos(pos);
+		m_selectBoxUI->GetBlock()->SetPos(pos);
 	}
 }
 
 void InventoryUI::ResetBoxUI()
 {
+	m_selectBoxUI = nullptr;
 	for (int i = 0; i < m_uiBoxList.size(); ++i)
 	{
-		m_uiBoxList[i].isClick = false;
+		m_uiBoxList[i]->SetIsClick(false);
 	}
+}
+
+bool InventoryUI::AllUsedBlock()
+{
+	for (auto boxUI : m_uiBoxList)
+	{
+		if (boxUI->GetBlock() != nullptr)
+		{
+			return false;
+		}
+	}
+
+	return true;
 }
 
 

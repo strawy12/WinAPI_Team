@@ -3,6 +3,7 @@
 #include"Block.h"
 #include "PyramidUI.h"
 #include"InventoryUI.h"
+#include"InventoryBoxUI.h"
 #include"PyramidBoxUI.h"
 
 BlockMgr::BlockMgr()
@@ -31,9 +32,9 @@ void BlockMgr::FinalUpdate()
 {
 	for (auto& box : m_inventoryUI->GetUIBoxList())
 	{
-		if (box.block == nullptr) continue;
+		if (box->GetBlock() == nullptr) continue;
 
-		if (!m_pyramidUI->ExistSelectableBox(box.block->GetBlockType()))
+		if (!m_pyramidUI->ExistSelectableBox(box->GetBlockType()))
 		{
 			int a = 10;
 		}
@@ -55,13 +56,13 @@ void BlockMgr::CreateMonsterTypes()
 void BlockMgr::CreateMonster(MONSTER_TYPE type, int idx)
 {
 	Object* pObj = new Block(type);
-	CreateObject(pObj, GROUP_TYPE::DEFAULT);
+	//CreateObject(pObj, GROUP_TYPE::DEFAULT);
 	m_inventoryUI->AddBlock(idx, dynamic_cast<Block*>(pObj));
 }
 
 void BlockMgr::SelectInventoryBoxUI(InventoryBoxUI* invenBoxUI)
 {
-	if (invenBoxUI->block == nullptr)
+	if (invenBoxUI->GetBlock() == nullptr)
 	{
 		m_invenBoxUI = nullptr;
 		ResetBoxUI();
@@ -69,7 +70,7 @@ void BlockMgr::SelectInventoryBoxUI(InventoryBoxUI* invenBoxUI)
 	}
 
 	m_invenBoxUI = invenBoxUI;
-	m_pyramidUI->JudgeBoxUI(m_invenBoxUI->block->GetBlockType());
+	m_pyramidUI->JudgeBoxUI(m_invenBoxUI->GetBlockType());
 }
 
 void BlockMgr::SelectPyramidBoxUI(PyramidBoxUI* pyBoxUI)
@@ -77,8 +78,8 @@ void BlockMgr::SelectPyramidBoxUI(PyramidBoxUI* pyBoxUI)
 	if (m_invenBoxUI == nullptr)
 		return;
 
-	m_pyramidUI->AddBlock(pyBoxUI, m_invenBoxUI->block);
-	m_invenBoxUI->block = nullptr;
+	m_pyramidUI->AddBlock(pyBoxUI, m_invenBoxUI->GetBlock());
+	m_invenBoxUI->SetBlock(nullptr);
 
 	ResetBoxUI();
 
