@@ -78,6 +78,7 @@ enum class EVENT_TYPE
 
 enum class MONSTER_TYPE
 {
+	NONE = -1,
 	MUSHROOM,
 	OCTOPUS,
 	PENGUIN,

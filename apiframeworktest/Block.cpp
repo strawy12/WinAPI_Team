@@ -31,6 +31,7 @@ void Block::Render(HDC _dc)
 	//SetPos(Vec2(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2));
 	Vec2 vPos = GetPos();
 	Vec2 vScale = GetScale();
+
 	TransparentBlt(_dc
 		, (int)(vPos.x - (float)(Width * vScale.x / 2))
 		, (int)(vPos.y - (float)(Height * vScale.y / 2))
