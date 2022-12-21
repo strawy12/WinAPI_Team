@@ -76,14 +76,14 @@ enum class EVENT_TYPE
 	END,
 };
 
-enum class MONSTER_TYPE
+enum class BOX_TYPE
 {
 	NONE = -1,
-	MUSHROOM,
-	OCTOPUS,
-	PENGUIN,
-	PINKBEEN,
-	SSLIME,
+	GFC,
+	HOSIC,
+	KYOCHON,
+	PERICANA,
+	PURADAC,
 
 	END,
 };
