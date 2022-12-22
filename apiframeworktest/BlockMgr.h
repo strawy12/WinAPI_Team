@@ -1,6 +1,7 @@
 #pragma once
 class InventoryUI;
 class PyramidUI;
+class GameOverUI;
 
 class PyramidBoxUI;
 class InventoryBoxUI;
@@ -32,17 +33,22 @@ public:
 	GAME_STATE GetGameState() { return m_gameState; }
 	void SetGameState(GAME_STATE state) { m_gameState = state; }
 
+	bool GameOver() { return m_isGameOver; }
+
 private:
 	BOX_TYPE m_monsterTypes[12];
 	InventoryUI* m_inventoryUI; 
 	PyramidUI* m_pyramidUI;
 
 	InventoryBoxUI* m_invenBoxUI;
+	GameOverUI* m_gameOverUI;
 
 	float m_currentTime;
 	float m_maxTime;
 
 	int m_cirCount; // 순환 카운트
+
+	bool m_isGameOver = false;
 
 	GAME_STATE m_gameState;
 };

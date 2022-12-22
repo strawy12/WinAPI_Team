@@ -29,19 +29,16 @@ void PyramidBoxUI::Update()
 		{
 			pos.y = m_originPos.y;
 			m_isSpawn = false;
-			m_block->SetEndSpawn(true);
+			
+			BlockMgr::GetInst()->SetGameState(GAME_STATE::GAME);
 		}
 		m_block->SetPos(pos);
 	}
 
-	if (m_block)
-		m_block->Update();
 }
 
 void PyramidBoxUI::Render(HDC hdc)
 {
-
-
 	HBRUSH selectablePenBrush = CreateSolidBrush(RGB(255, 222, 121));
 	HPEN selectablePen = CreatePen(PS_DASHDOT, 1, RGB(255, 160, 0));
 	HPEN oldPen = nullptr;

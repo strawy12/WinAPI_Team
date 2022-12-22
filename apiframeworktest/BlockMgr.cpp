@@ -5,6 +5,7 @@
 #include"InventoryUI.h"
 #include"InventoryBoxUI.h"
 #include"PyramidBoxUI.h"
+#include"GameOverUI.h"
 #include"TimeMgr.h"
 
 BlockMgr::BlockMgr()
@@ -15,6 +16,17 @@ BlockMgr::BlockMgr()
 
 BlockMgr::~BlockMgr()
 {
+	if(m_gameOverUI)
+	delete m_gameOverUI;
+
+	if (m_invenBoxUI)
+		delete m_invenBoxUI;
+
+	if (m_inventoryUI)
+		delete m_inventoryUI;
+
+	if (m_pyramidUI)
+		delete m_pyramidUI;
 }
 
 void BlockMgr::Init()
@@ -25,6 +37,8 @@ void BlockMgr::Init()
 
 	m_pyramidUI = new PyramidUI;
 	m_pyramidUI->Init();
+
+	m_gameOverUI = new GameOverUI;
 
 	CreateObject(m_inventoryUI, GROUP_TYPE::DEFAULT);
 	CreateObject(m_pyramidUI, GROUP_TYPE::DEFAULT);
@@ -37,7 +51,7 @@ void BlockMgr::Update()
 	
 	if (m_currentTime <= 0.f)
 	{
-		int a;
+		m_isGameOver = true;
 	}
 }
 
@@ -55,9 +69,9 @@ void BlockMgr::FinalUpdate()
 		}
 	}
 
-	if (isExistSelectableBox)
+	if (!isExistSelectableBox)
 	{
-		int a;
+		m_isGameOver = true;
 	}
 }
 
@@ -90,6 +104,8 @@ void BlockMgr::Render(HDC hdc)
 
 	SelectObject(hdc, hFont);
 	DeleteObject(hFont);
+
+	//m_gameOverUI->Render(hdc);
 }
 
 void BlockMgr::CreateMonsterTypes()
