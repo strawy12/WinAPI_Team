@@ -1,6 +1,7 @@
 #pragma once
 class InventoryUI;
 class PyramidUI;
+class GameOverUI;
 
 class PyramidBoxUI;
 class InventoryBoxUI;
@@ -16,20 +17,39 @@ private:
 
 public:
 	void Init();
+	void Update();
 	void FinalUpdate();
+	void Render(HDC hdc);
 
 public:
 	void CreateMonsterTypes();
-	void CreateMonster(MONSTER_TYPE type, int idx);
+	void CreateMonster(BOX_TYPE type, int idx);
 	void SelectInventoryBoxUI(InventoryBoxUI* invenBoxUI);
 	void SelectPyramidBoxUI(PyramidBoxUI* pyBoxUI);
 	void ResetBoxUI();
 
+public:
+	void SetMaxTime(float maxTime) { m_maxTime = m_currentTime = maxTime; }
+	GAME_STATE GetGameState() { return m_gameState; }
+	void SetGameState(GAME_STATE state) { m_gameState = state; }
+
+	bool GameOver() { return m_isGameOver; }
+
 private:
-	MONSTER_TYPE m_monsterTypes[12];
+	BOX_TYPE m_monsterTypes[12];
 	InventoryUI* m_inventoryUI; 
 	PyramidUI* m_pyramidUI;
 
 	InventoryBoxUI* m_invenBoxUI;
+	GameOverUI* m_gameOverUI;
+
+	float m_currentTime;
+	float m_maxTime;
+
+	int m_cirCount; // 순환 카운트
+
+	bool m_isGameOver = false;
+
+	GAME_STATE m_gameState;
 };
 

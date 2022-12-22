@@ -6,9 +6,12 @@ public:
 	PyramidBoxUI(int left, int right);
 	virtual ~PyramidBoxUI();
 
+	virtual void Update() override;
 	virtual void Render(HDC hdc) override;
 
 public:
+	void SpawnEffect();
+
 	bool IsSelectable()
 	{
 		if (m_isSelectable == true && m_block == nullptr)
@@ -25,9 +28,14 @@ public:
 	void SetRight(int right) { m_right = right; }
 	void SetIsSelectable(bool isSelectable) { m_isSelectable = isSelectable; }
 
+
 private:
+	Vec2 m_originPos;
 	bool m_isSelectable;
-	int m_left; 
+	bool m_isSpawn;
+	int m_left;
 	int m_right;
+
+	float m_acceleration;
 };
 

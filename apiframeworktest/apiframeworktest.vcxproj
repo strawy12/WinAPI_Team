@@ -173,6 +173,7 @@
     <ClInclude Include="EventMgr.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="func.h" />
+    <ClInclude Include="GameOverUI.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="InventoryBoxUI.h" />
     <ClInclude Include="InventoryUI.h" />
@@ -207,6 +208,7 @@
     <ClCompile Include="Core.cpp" />
     <ClCompile Include="EventMgr.cpp" />
     <ClCompile Include="func.cpp" />
+    <ClCompile Include="GameOverUI.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="InventoryBoxUI.cpp" />
     <ClCompile Include="InventoryUI.cpp" />
