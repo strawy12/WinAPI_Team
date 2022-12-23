@@ -21,8 +21,8 @@ Scene_01::~Scene_01()
 
 void Scene_01::Enter()
 {
-	SoundMgr::GetInst()->LoadSound(L"TitleBGM", true, L"Sound\\TitleBGM.mp3");
-	SoundMgr::GetInst()->Play(L"TitleBGM");
+	SoundMgr::GetInst()->LoadSound(L"Main", true, L"Sound\\Main.mp3");
+	SoundMgr::GetInst()->Play(L"Main");
 	BlockMgr::GetInst()->SetGameState(GAME_STATE::GAME);
 }
 

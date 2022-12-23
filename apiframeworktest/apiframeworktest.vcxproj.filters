@@ -181,6 +181,7 @@
     <ClInclude Include="PyramidBoxUI.h" />
     <ClInclude Include="InventoryBoxUI.h" />
     <ClInclude Include="GameOverUI.h" />
+    <ClInclude Include="StartScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="apiframeworktest.rc">
@@ -284,5 +285,6 @@
     <ClCompile Include="PyramidBoxUI.cpp" />
     <ClCompile Include="InventoryBoxUI.cpp" />
     <ClCompile Include="GameOverUI.cpp" />
+    <ClCompile Include="StartScene.cpp" />
   </ItemGroup>
 </Project>

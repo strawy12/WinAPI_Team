@@ -78,6 +78,7 @@ void BlockMgr::FinalUpdate()
 
 void BlockMgr::Render(HDC hdc)
 {
+	return;
 	HBRUSH hNullBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
 	HBRUSH hOldBrush = (HBRUSH)SelectObject(hdc, hNullBrush);
 
