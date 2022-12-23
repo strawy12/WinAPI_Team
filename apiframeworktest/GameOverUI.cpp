@@ -59,13 +59,27 @@ void GameOverUI::Update()
 
 void GameOverUI::Render(HDC hdc)
 {
-	if (BlockMgr::GetInst()->GameOver() == false) return;
+	if (BlockMgr::GetInst()->GameClear())
+	{
+		BGRender(hdc);
+		TitleRender(hdc, L"GameOver", RGB(255,0,0));
+		BoxCountTextRender(hdc);
+		PlayTimeTextRender(hdc);
+		TitleBtnRender(hdc);
+	}
+	else if (BlockMgr::GetInst()->GameOver())
+	{
+		BGRender(hdc);
+		TitleRender(hdc, L"GameClear", RGB(0, 255, 0));
+		BoxCountTextRender(hdc);
+		PlayTimeTextRender(hdc);
+		TitleBtnRender(hdc);
+	}
+	else
+	{
+		return;
+	}
 
-	BGRender(hdc);
-	TitleRender(hdc);
-	BoxCountTextRender(hdc);
-	PlayTimeTextRender(hdc);
-	TitleBtnRender(hdc);
 
 }
 
@@ -108,7 +122,7 @@ void GameOverUI::BGRender(HDC hdc)
 	DeleteDC(alphaDC);
 }
 
-void GameOverUI::TitleRender(HDC hdc)
+void GameOverUI::TitleRender(HDC hdc, wstring str, COLORREF color)
 {
 	Vec2 vPos = GetPos();
 	Vec2 vScale = GetScale();
@@ -118,10 +132,8 @@ void GameOverUI::TitleRender(HDC hdc)
 	HFONT titleFont = CreateFont(30, 0, 0, 0, FW_BOLD, FALSE, FALSE, FALSE, HANGEUL_CHARSET, 0, 0, 0, 0, L"³ª´®°íµñ");
 	HFONT oldFont = (HFONT)SelectObject(hdc, titleFont);
 
-	SetTextColor(hdc, RGB(255, 0, 0));
+	SetTextColor(hdc, color);
 	SetBkMode(hdc, TRANSPARENT);
-
-	wstring str = TEXT("GAME OVER");
 
 	TextOut(hdc,
 		vPos.x - 80,

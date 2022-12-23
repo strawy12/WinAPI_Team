@@ -91,8 +91,9 @@ enum class BOX_TYPE
 
 enum class GAME_STATE
 {
+	TITLE,
 	SPAWNBLOCK,
 	GAME,
 	GAMEOVER,
-
+	GAMECLEAR
 };

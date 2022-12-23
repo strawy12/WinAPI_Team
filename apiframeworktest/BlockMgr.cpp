@@ -9,7 +9,7 @@
 #include"TimeMgr.h"
 #include"ResMgr.h"
 #include"Image.h"
-
+ 
 BlockMgr::BlockMgr()
 {
 } 
@@ -40,7 +40,7 @@ void BlockMgr::Init()
 
 void BlockMgr::Update()
 {
-	if (m_isGameOver)
+	if (GameOver())
 		return;
 
 	m_playTime += TimeMgr::GetInst()->GetfDT();
@@ -48,7 +48,7 @@ void BlockMgr::Update()
 
 	if (m_currentTime <= 0.f)
 	{
-		m_isGameOver = true;
+		m_gameState = GAME_STATE::GAMEOVER;
 	}
 }
 
@@ -80,7 +80,6 @@ void BlockMgr::Release()
 	m_boxCount = 0;
 	m_currentTime = (0.f);
 	m_maxTime = (0.f);
-	m_isGameOver = false;
 
 }
 
@@ -195,7 +194,7 @@ void BlockMgr::CheckGameOver()
 {
 	if (m_boxCount >= 36)
 	{
-		m_isGameOver = true;
+		m_gameState = GAME_STATE::GAMECLEAR;
 		return;
 	}
 
@@ -213,8 +212,13 @@ void BlockMgr::CheckGameOver()
 
 	if (!isExistSelectableBox)
 	{
-		m_isGameOver = true;
+		m_gameState = GAME_STATE::GAMEOVER;
 	}
 
+}
+
+bool BlockMgr::GameOver()
+{
+	return m_gameState == GAME_STATE::GAMEOVER; 
 }
 

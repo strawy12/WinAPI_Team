@@ -13,7 +13,7 @@ public:
 
 public:
 	void BGRender(HDC hdc) ;
-	void TitleRender(HDC hdc) ;
+	void TitleRender(HDC hdc, wstring str, COLORREF color) ;
 	void BoxCountTextRender(HDC hdc);
 	void PlayTimeTextRender(HDC hdc);
 	void TitleBtnRender(HDC hdc);

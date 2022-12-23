@@ -36,11 +36,15 @@ public:
 public:
 	void SetMaxTime(float maxTime) { m_maxTime = m_currentTime = maxTime; }
 	GAME_STATE GetGameState() { return m_gameState; }
-	void SetGameState(GAME_STATE state) { m_gameState = state; }
+	void SetGameState(GAME_STATE state) {
+		if (m_gameState == GAME_STATE::GAMEOVER || m_gameState == GAME_STATE::GAMECLEAR) return;
+		m_gameState = state; }
+
 	int GetBoxCount() { return m_boxCount; }
 	float GetPlayTime() { return m_playTime; }
 
-	bool GameOver() { return m_isGameOver; }
+	bool GameOver();
+	bool GameClear() { return m_gameState == GAME_STATE::GAMECLEAR; }
 
 
 private:
@@ -57,8 +61,6 @@ private:
 
 	int m_cirCount; // 순환 카운트
 	int m_boxCount; // 쌓은 카운트
-
-	bool m_isGameOver = false;
 
 	GAME_STATE m_gameState;
 };
