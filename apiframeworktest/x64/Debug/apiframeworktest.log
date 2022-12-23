@@ -4,32 +4,4 @@ D:\VS\WinAPI_Team\apiframeworktest\BlockMgr.cpp(111,48): warning C4267: '인수'
 D:\VS\WinAPI_Team\apiframeworktest\BlockMgr.cpp(129,48): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 D:\VS\WinAPI_Team\apiframeworktest\BlockMgr.cpp(137,12): warning C4244: '인수': 'time_t'에서 'unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 D:\VS\WinAPI_Team\apiframeworktest\BlockMgr.cpp(144,30): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  Core.cpp
-  GameOverUI.cpp
-D:\VS\WinAPI_Team\apiframeworktest\GameOverUI.cpp(21,29): warning C4244: '=': 'float'에서 'BYTE'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-D:\VS\WinAPI_Team\apiframeworktest\GameOverUI.cpp(29,30): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-D:\VS\WinAPI_Team\apiframeworktest\GameOverUI.cpp(31,49): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-D:\VS\WinAPI_Team\apiframeworktest\GameOverUI.cpp(141,28): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-D:\VS\WinAPI_Team\apiframeworktest\GameOverUI.cpp(140,45): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-D:\VS\WinAPI_Team\apiframeworktest\GameOverUI.cpp(139,10): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-D:\VS\WinAPI_Team\apiframeworktest\GameOverUI.cpp(169,28): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-D:\VS\WinAPI_Team\apiframeworktest\GameOverUI.cpp(168,45): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-D:\VS\WinAPI_Team\apiframeworktest\GameOverUI.cpp(167,22): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-D:\VS\WinAPI_Team\apiframeworktest\GameOverUI.cpp(204,28): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-D:\VS\WinAPI_Team\apiframeworktest\GameOverUI.cpp(203,45): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-D:\VS\WinAPI_Team\apiframeworktest\GameOverUI.cpp(202,22): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  InventoryUI.cpp
-D:\VS\WinAPI_Team\apiframeworktest\InventoryUI.cpp(123,18): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-D:\VS\WinAPI_Team\apiframeworktest\InventoryUI.cpp(124,17): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-D:\VS\WinAPI_Team\apiframeworktest\InventoryUI.cpp(151,21): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-D:\VS\WinAPI_Team\apiframeworktest\InventoryUI.cpp(152,20): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-D:\VS\WinAPI_Team\apiframeworktest\InventoryUI.cpp(163,19): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-D:\VS\WinAPI_Team\apiframeworktest\InventoryUI.cpp(164,18): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-D:\VS\WinAPI_Team\apiframeworktest\InventoryUI.cpp(131,8): warning C4101: 'pt' :참조되지 않은 지역 변수입니다.
-  PyramidBoxUI.cpp
-  PyramidUI.cpp
-D:\VS\WinAPI_Team\apiframeworktest\PyramidUI.cpp(76,44): warning C4267: '=': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-D:\VS\WinAPI_Team\apiframeworktest\PyramidUI.cpp(77,41): warning C4267: '=': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-D:\VS\WinAPI_Team\apiframeworktest\PyramidUI.cpp(176,18): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-D:\VS\WinAPI_Team\apiframeworktest\PyramidUI.cpp(177,17): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   apiframeworktest.vcxproj -> D:\VS\WinAPI_Team\OutPut\bin_debug\Gamep_winapiframework.exe

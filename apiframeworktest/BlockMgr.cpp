@@ -110,7 +110,7 @@ void BlockMgr::TimerRender(HDC hdc)
 
 	TextOut(hdc, 80, 45, str.c_str(), str.length());
 
-	SelectObject(hdc, hFont);
+	SelectObject(hdc, oldFont);
 	DeleteObject(hFont);
 }
 
