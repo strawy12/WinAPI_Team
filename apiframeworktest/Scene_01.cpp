@@ -1,4 +1,4 @@
-#include "pch.h"
+ #include "pch.h"
 #include "Scene_01.h"
 #include "KeyMgr.h"
 #include "InventoryUI.h"
@@ -21,6 +21,8 @@ Scene_01::~Scene_01()
 
 void Scene_01::Enter()
 {
+	SoundMgr::GetInst()->LoadSound(L"TitleBGM", true, L"Sound\\TitleBGM.mp3");
+	SoundMgr::GetInst()->Play(L"TitleBGM");
 	BlockMgr::GetInst()->SetGameState(GAME_STATE::GAME);
 }
 

@@ -28,8 +28,9 @@ void SoundMgr::LoadSound(const wstring& _strKey, bool _bLoop, const wstring& _st
 	// wstring to string
 	string str;
 	size_t size;
-	str.resize(strFilePath.length());
-	wcstombs_s(&size, &str[0], str.size() + 1, strFilePath.c_str(), strFilePath.size());
+	str = ws2s(strFilePath);
+	//str.resize(strFilePath.length());
+	//wcstombs_s(&size, &str[0], str.size() + 1, strFilePath.c_str(), strFilePath.size());
 
 	// 루프 할지 말지 결정
 	FMOD_MODE eMode = FMOD_LOOP_NORMAL; // 반복 출력
@@ -39,7 +40,7 @@ void SoundMgr::LoadSound(const wstring& _strKey, bool _bLoop, const wstring& _st
 	PSOUNDINFO ptSound = new SOUNDINFO;
 	ptSound->bLoop = _bLoop;
 	m_pSystem->createSound(str.c_str(), eMode, NULL, &ptSound->pSound);
-	m_mapSod.insert({ _strKey,ptSound });
+ 	m_mapSod.insert({ _strKey,ptSound });
 }
 
 void SoundMgr::Play(const wstring& _strKey)
