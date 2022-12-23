@@ -29,23 +29,23 @@ void ChangeScene(SCENE_TYPE _eNext)
 	EventMgr::GetInst()->AddEvent(evn);
 }
 
-wstring ToStringMonterType(BOX_TYPE type)
+wstring ToStringBoxType(BOX_TYPE type)
 {
 	switch (type)
 	{
-	case BOX_TYPE::GFC:
-		return  L"MUSHROOM";
 	case BOX_TYPE::HOSIC:
-		return  L"OCTOPUS";
-
+		return  L"HOSIC";
 	case BOX_TYPE::KYOCHON:
-		return  L"PENGUIN";
+		return  L"KYOCHON";
 
 	case BOX_TYPE::PERICANA:
-		return  L"PINKBEEN";
+		return  L"PERICANA";
 
 	case BOX_TYPE::PURADAC:
-		return  L"SSLIME";
+		return  L"PURADAC";
+
+	case BOX_TYPE::GFC:
+		return  L"GFC";
 
 	default:
 		break;

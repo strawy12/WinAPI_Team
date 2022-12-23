@@ -45,7 +45,7 @@ int Core::Init(HWND _hWnd, POINT _ptResolution)
 
 	SetWindowPos(m_hWnd, nullptr, winposx, winposy, rt.right - rt.left, rt.bottom - rt.top, 0);
 	m_hDC = GetDC(m_hWnd);
-	
+
 	// 이중 버퍼링 용도의 비트맵과 DC를 만든다.
 	m_hBit = CreateCompatibleBitmap(m_hDC, m_ptResolution.x, m_ptResolution.y);
 	m_memDC = CreateCompatibleDC(m_hDC);
@@ -71,6 +71,7 @@ void Core::Progress()
 	Update();
 	Render();
 	BlockMgr::GetInst()->FinalUpdate();
+	EventMgr::GetInst()->Update();
 }
 
 void Core::Update()
@@ -84,22 +85,25 @@ void Core::Update()
 
 	// ==== 충돌 체크 ====
 	CollisionMgr::GetInst()->Update();
+
+	BlockMgr::GetInst()->Update();
 }
 
 
 void Core::Render()
 {
 	// ==== Rendering ====
-	PatBlt(m_memDC, 0, 0, m_ptResolution.x, m_ptResolution.y, WHITENESS); 
+	PatBlt(m_memDC, 0, 0, m_ptResolution.x, m_ptResolution.y, WHITENESS);
 
 	SceneMgr::GetInst()->Render(m_memDC);
+	BlockMgr::GetInst()->Render(m_memDC);
 
 	// 더블버퍼링으로 그리기
-		BitBlt(m_hDC, 0, 0, m_ptResolution.x, m_ptResolution.y
-			,m_memDC, 0, 0, SRCCOPY);
-		TimeMgr::GetInst()->Render();
+	BitBlt(m_hDC, 0, 0, m_ptResolution.x, m_ptResolution.y
+		, m_memDC, 0, 0, SRCCOPY);
+	TimeMgr::GetInst()->Render();
 	// === 이벤트 지연 처리 === //
-		EventMgr::GetInst()->Update();
+
 
 }
 

@@ -23,7 +23,7 @@ void InventoryBoxUI::Render(HDC hdc)
 	if (m_isClick)
 	{
 		oldPen = (HPEN)SelectObject(hdc, selectablePen);
-		SelectObject(hdc, selectablePenBrush);
+		oldBrush = (HBRUSH)SelectObject(hdc, selectablePenBrush);
 		Rectangle(hdc
 			, m_rt.left + 3
 			, m_rt.top + 3

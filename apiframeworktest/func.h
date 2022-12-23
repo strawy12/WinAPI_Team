@@ -4,7 +4,8 @@ class Object;
 void CreateObject(Object* _pObj, GROUP_TYPE _eGroup);
 void DeleteObject(Object* _pObj);
 void ChangeScene(SCENE_TYPE _eNext);
-wstring ToStringMonterType(BOX_TYPE type);
+
+wstring ToStringBoxType(BOX_TYPE type);
 
 template<typename T>
 void Safe_Delete_Vec(vector<T>& _vec)

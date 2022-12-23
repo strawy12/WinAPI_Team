@@ -5,14 +5,32 @@
 #include"InventoryUI.h"
 #include"InventoryBoxUI.h"
 #include"PyramidBoxUI.h"
+<<<<<<< HEAD
 #include "SoundMgr.h"
+=======
+#include"GameOverUI.h"
+#include"TimeMgr.h"
+>>>>>>> main
 
 BlockMgr::BlockMgr()
+	:m_currentTime(0.f)
+	, m_maxTime(0.f)
 {
 }
 
 BlockMgr::~BlockMgr()
 {
+	if(m_gameOverUI)
+	delete m_gameOverUI;
+
+	if (m_invenBoxUI)
+		delete m_invenBoxUI;
+
+	if (m_inventoryUI)
+		delete m_inventoryUI;
+
+	if (m_pyramidUI)
+		delete m_pyramidUI;
 }
 
 void BlockMgr::Init()
@@ -24,22 +42,74 @@ void BlockMgr::Init()
 	m_pyramidUI = new PyramidUI;
 	m_pyramidUI->Init();
 
+	m_gameOverUI = new GameOverUI;
+
 	CreateObject(m_inventoryUI, GROUP_TYPE::DEFAULT);
 	CreateObject(m_pyramidUI, GROUP_TYPE::DEFAULT);
 	CreateMonsterTypes();
 }
 
+void BlockMgr::Update()
+{
+	m_currentTime -= TimeMgr::GetInst()->GetfDT();
+	
+	if (m_currentTime <= 0.f)
+	{
+		m_isGameOver = true;
+	}
+}
+
 void BlockMgr::FinalUpdate()
 {
+	bool isExistSelectableBox = false;
 	for (auto& box : m_inventoryUI->GetUIBoxList())
 	{
 		if (box->GetBlock() == nullptr) continue;
 
-		if (!m_pyramidUI->ExistSelectableBox(box->GetBlockType()))
+
+		if (isExistSelectableBox == false && m_pyramidUI->ExistSelectableBox(box->GetBlockType()))
 		{
-			int a = 10;
+			isExistSelectableBox = true;
 		}
 	}
+
+	if (!isExistSelectableBox)
+	{
+		m_isGameOver = true;
+	}
+}
+
+void BlockMgr::Render(HDC hdc)
+{
+	HBRUSH hNullBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
+	HBRUSH hOldBrush = (HBRUSH)SelectObject(hdc, hNullBrush);
+
+	Rectangle(hdc,
+		10, 40, 210, 70);
+
+	SelectObject(hdc, hOldBrush);
+
+	int size = (int)((m_currentTime / m_maxTime) * 200.f);
+
+	Rectangle(hdc,
+		10, 40, 10 + size, 70);
+
+	HFONT hFont = CreateFont(18, 0, 0, 0, FW_BOLD, FALSE, FALSE, FALSE, HANGEUL_CHARSET, 0, 0, 0, 0, L"³ª´®°íµñ");
+	HFONT oldFont = (HFONT)SelectObject(hdc, hFont);
+
+	SetTextColor(hdc, RGB(0, 0, 0));
+	SetBkMode(hdc, TRANSPARENT);
+
+	TCHAR szTemp[256];
+	swprintf_s(szTemp, TEXT("%d / %d"), (int)m_currentTime, (int)m_maxTime);
+	wstring str = szTemp;
+
+	TextOut(hdc, 80, 45, str.c_str(), str.length());
+
+	SelectObject(hdc, hFont);
+	DeleteObject(hFont);
+
+	//m_gameOverUI->Render(hdc);
 }
 
 void BlockMgr::CreateMonsterTypes()
@@ -51,6 +121,8 @@ void BlockMgr::CreateMonsterTypes()
 		m_monsterTypes[i] = (BOX_TYPE)(rand() % 5);
 		CreateMonster(m_monsterTypes[i], i);
 	}
+
+	SetMaxTime(DEFAULT_MAX_TIME - (m_cirCount++ * 12));
 
 }
 

@@ -20,5 +20,4 @@ private:
     Image* m_pImage;
     BOX_TYPE m_blockType;
     BLENDFUNCTION m_bf = {};
-
 };

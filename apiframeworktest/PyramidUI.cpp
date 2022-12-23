@@ -38,6 +38,12 @@ void PyramidUI::Render(HDC hdc)
 	{
 		m_uiBoxList[i]->Render(hdc);
 	}
+
+	for (int i = 0; i < m_uiBoxList.size(); ++i)
+	{
+		if(m_uiBoxList[i]->GetBlock())
+			m_uiBoxList[i]->GetBlock()->Render(hdc);
+	}
 }
 
 void PyramidUI::CreateBoxUI()
@@ -123,6 +129,16 @@ void PyramidUI::ResetBoxUI()
 
 void PyramidUI::Update()
 {
+	for (auto box : m_uiBoxList)
+	{
+		box->Update();
+	}
+
+	if (BlockMgr::GetInst()->GetGameState() != GAME_STATE::GAME)
+	{
+		return;
+	}
+
 	if (KEY_UP(KEY::LBTN))
 	{
 		POINT pt;
@@ -141,6 +157,7 @@ void PyramidUI::Update()
 			}
 		}
 	}
+
 }
 
 void PyramidUI::AddBlock(int idx, Block* block)
@@ -154,6 +171,7 @@ void PyramidUI::AddBlock(PyramidBoxUI* boxUI, Block* block)
 	const RECT& rt = boxUI->GetRect();
 	boxUI->SetBlock(block);
 
+	BlockMgr::GetInst()->SetGameState(GAME_STATE::SPAWNBLOCK);
 	// 생성 이펙트 넣어보자!
 
 	pos.x = rt.left + (rt.right - rt.left) / 2;
@@ -163,6 +181,8 @@ void PyramidUI::AddBlock(PyramidBoxUI* boxUI, Block* block)
 
 	SoundMgr::GetInst()->LoadSound(L"SetBox", true, L"Sound\\SetBox.mp3");
 	SoundMgr::GetInst()->Play(L"SetBox");
+
+	boxUI->SpawnEffect();
 }
 
 bool PyramidUI::ExistSelectableBox(BOX_TYPE type)

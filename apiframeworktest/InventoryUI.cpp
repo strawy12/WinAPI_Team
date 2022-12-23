@@ -33,6 +33,12 @@ void InventoryUI::Init()
 
 void InventoryUI::Update()
 {
+
+	if (BlockMgr::GetInst()->GetGameState() != GAME_STATE::GAME)
+	{
+		return;
+	}
+
 	if (KEY_UP(KEY::LBTN))
 	{
 		PtInBoxUI();

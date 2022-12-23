@@ -7,6 +7,7 @@ class Scene_01 :
 {
 private:
     Image* m_pBGImage;
+    float m_playTime = 0.f;
 
 public:
     Scene_01();
