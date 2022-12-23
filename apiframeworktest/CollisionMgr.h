@@ -18,7 +18,7 @@ private:
 	// 충돌체 간의 이전 프레임 충돌 정보
 	map<ULONGLONG, bool> m_mapColInfo; 
 public:
-	SINGLE(CollisionMgr);
+	SINGLE(CollisionMgr)
 private:
 	CollisionMgr();
 	~CollisionMgr();

@@ -18,8 +18,11 @@ private:
 public:
 	void Init();
 	void Update();
-	void FinalUpdate();
 	void Render(HDC hdc);
+	void Release();
+
+	void TimerRender(HDC hdc);
+	void PlayTimeTextRender(HDC hdc);
 
 public:
 	void CreateMonsterTypes();
@@ -28,27 +31,36 @@ public:
 	void SelectPyramidBoxUI(PyramidBoxUI* pyBoxUI);
 	void ResetBoxUI();
 
+	void CheckGameOver();
+
 public:
 	void SetMaxTime(float maxTime) { m_maxTime = m_currentTime = maxTime; }
 	GAME_STATE GetGameState() { return m_gameState; }
-	void SetGameState(GAME_STATE state) { m_gameState = state; }
+	void SetGameState(GAME_STATE state) {
+		if (m_gameState == GAME_STATE::GAMEOVER || m_gameState == GAME_STATE::GAMECLEAR) return;
+		m_gameState = state; }
 
-	bool GameOver() { return m_isGameOver; }
+	int GetBoxCount() { return m_boxCount; }
+	float GetPlayTime() { return m_playTime; }
+
+	bool GameOver();
+	bool GameClear() { return m_gameState == GAME_STATE::GAMECLEAR; }
+
 
 private:
-	BOX_TYPE m_monsterTypes[12];
-	InventoryUI* m_inventoryUI; 
+	InventoryUI* m_inventoryUI;
 	PyramidUI* m_pyramidUI;
 
 	InventoryBoxUI* m_invenBoxUI;
 	GameOverUI* m_gameOverUI;
 
+
+	float m_playTime;
 	float m_currentTime;
 	float m_maxTime;
 
 	int m_cirCount; // 순환 카운트
-
-	bool m_isGameOver = false;
+	int m_boxCount; // 쌓은 카운트
 
 	GAME_STATE m_gameState;
 };

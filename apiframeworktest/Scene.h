@@ -22,6 +22,12 @@ public:
 	{
 		m_vecObj[(UINT)_eType].push_back(_pObj);
 	}
+	void DeleteObject(Object* _pObj, GROUP_TYPE _eType)
+	{
+		for (int i = 0; i < m_vecObj[(UINT)_eType].size(); i++)
+		{
+		}
+	}
 	const vector<Object*>& GetGroupObject(GROUP_TYPE _eType)
 	{
 		return m_vecObj[(UINT)_eType];

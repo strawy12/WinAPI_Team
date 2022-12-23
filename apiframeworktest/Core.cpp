@@ -61,7 +61,6 @@ int Core::Init(HWND _hWnd, POINT _ptResolution)
 	TimeMgr::GetInst()->Init();
 	KeyMgr::GetInst()->Init();
 	SceneMgr::GetInst()->Init();
-	BlockMgr::GetInst()->Init();
 
 	return S_OK;
 }
@@ -70,7 +69,6 @@ void Core::Progress()
 {
 	Update();
 	Render();
-	BlockMgr::GetInst()->FinalUpdate();
 	EventMgr::GetInst()->Update();
 }
 

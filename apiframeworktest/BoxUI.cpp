@@ -3,7 +3,7 @@
 #include "BoxUI.h"
 #include "ResMgr.h"
 #include "Image.h"
-
+#include "Core.h"
 BoxUI::BoxUI()
 	: m_rt{}
 	, m_block(nullptr)
@@ -68,19 +68,23 @@ void BoxUI::BackgroundRender(HDC hdc)
 	Vec2 vScale = GetScale();
 
 	HDC alphaDC = CreateCompatibleDC(hdc);
+	HBITMAP alphabit = CreateCompatibleBitmap(hdc,
+		Core::GetInst()->GetResolution().x, Core::GetInst()->GetResolution().y);
+	SelectObject(alphaDC, alphabit);
 
 	BitBlt(alphaDC
-		, (int)(vPos.x)
-		, (int)(vPos.y)
-		, vScale.x, vScale.y,
-		hdc,
-		Width, Height, SRCCOPY);
+		, 0
+		, 0
+		, vScale.x, vScale.y
+		, hdc
+		, (int)(vPos.x), (int)(vPos.y)
+		, SRCCOPY);
 
 	TransparentBlt(alphaDC
-		, (int)(vPos.x)
-		, (int)(vPos.y)
+		, 0
+		, 0
 		, vScale.x, vScale.y
-		, m_pOutLineImage->GetDC()
+		, m_pBGImage->GetDC()
 		, 0, 0, Width, Height
 		, RGB(255, 0, 255));
 
@@ -89,12 +93,9 @@ void BoxUI::BackgroundRender(HDC hdc)
 		, (int)(vPos.y)
 		, vScale.x, vScale.y,
 		alphaDC,
-		0, 0, Width, Height, m_bf);
+		0, 0, vScale.x, vScale.y, m_bf);
 
-	
-
-
-
+	DeleteObject(alphabit);
 	DeleteDC(alphaDC);
 }
 
