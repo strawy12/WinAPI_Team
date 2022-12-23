@@ -83,7 +83,6 @@ void Core::Update()
 
 	// ==== 충돌 체크 ====
 	CollisionMgr::GetInst()->Update();
-
 	BlockMgr::GetInst()->Update();
 }
 
@@ -94,6 +93,7 @@ void Core::Render()
 	PatBlt(m_memDC, 0, 0, m_ptResolution.x, m_ptResolution.y, WHITENESS);
 
 	SceneMgr::GetInst()->Render(m_memDC);
+
 	BlockMgr::GetInst()->Render(m_memDC);
 
 	// 더블버퍼링으로 그리기

@@ -192,6 +192,7 @@
     <ClInclude Include="SelectGDI.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="SoundMgr.h" />
+    <ClInclude Include="StartScene.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TimeMgr.h" />
     <ClInclude Include="Vec2.h" />
@@ -232,6 +233,7 @@
     <ClCompile Include="SelectGDI.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="SoundMgr.cpp" />
+    <ClCompile Include="StartScene.cpp" />
     <ClCompile Include="TimeMgr.cpp" />
     <ClCompile Include="Vec2.cpp" />
   </ItemGroup>

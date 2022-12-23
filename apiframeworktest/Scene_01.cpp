@@ -23,8 +23,8 @@ void Scene_01::Enter()
 {
 	BlockMgr::GetInst()->Init();
 	BlockMgr::GetInst()->SetGameState(GAME_STATE::GAME);
-	//SoundMgr::GetInst()->LoadSound(L"TitleBGM", true, L"Sound\\GameBGM.mp3");
-	//SoundMgr::GetInst()->Play(L"TitleBGM");
+	SoundMgr::GetInst()->LoadSound(L"TitleBGM", true, L"Sound\\GameBGM.mp3");
+	SoundMgr::GetInst()->Play(L"TitleBGM");
 }
 
 void Scene_01::Exit()

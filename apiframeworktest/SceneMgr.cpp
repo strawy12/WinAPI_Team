@@ -2,6 +2,7 @@
 #include "SceneMgr.h"
 #include "EventMgr.h"
 #include "Scene_01.h"
+#include "StartScene.h"
 
 SceneMgr::SceneMgr()
 	: m_pCurScene(nullptr)
@@ -32,8 +33,9 @@ void SceneMgr::Init()
 {
 	// Scene 생성
 	m_arrScene[(UINT)SCENE_TYPE::DEFAULT] = new Scene_01;
+	m_arrScene[(UINT)SCENE_TYPE::TITLE] = new StartScene;
 	// 현재 씬 지정
-	m_pCurScene = m_arrScene[(UINT)SCENE_TYPE::DEFAULT];
+	m_pCurScene = m_arrScene[(UINT)SCENE_TYPE::TITLE];
 	m_pCurScene->Enter();
 }
 
