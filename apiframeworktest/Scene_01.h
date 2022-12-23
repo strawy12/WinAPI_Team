@@ -7,7 +7,6 @@ class Scene_01 :
 {
 private:
     Image* m_pBGImage;
-    float m_playTime = 0.f;
 
 public:
     Scene_01();
@@ -15,7 +14,6 @@ public:
 public:
     virtual void Enter() override;
     virtual void Exit() override;
-    virtual void Update() override;
     virtual void Render(HDC hdc) override;
 };
 

@@ -26,10 +26,15 @@ void SoundMgr::LoadSound(const wstring& _strKey, bool _bLoop, const wstring& _st
 	strFilePath += _strRelativePath;
 
 	// wstring to string
-	string str;
+	/*string str;
 	size_t size;
 	str.resize(strFilePath.length());
-	wcstombs_s(&size, &str[0], str.size() + 1, strFilePath.c_str(), strFilePath.size());
+	wcstombs_s(&size, &str[0], str.size() + 1, strFilePath.c_str(), strFilePath.size());*/
+	int len;
+	int slength = static_cast<int>(strFilePath.length()) + 1;
+	len = WideCharToMultiByte(CP_ACP, 0, strFilePath.c_str(), slength, 0, 0, 0, 0);
+	string str(len, '\0');
+	WideCharToMultiByte(CP_ACP, 0, strFilePath.c_str(), slength, &str[0], len, 0, 0);
 
 	// 루프 할지 말지 결정
 	FMOD_MODE eMode = FMOD_LOOP_NORMAL; // 반복 출력

@@ -39,6 +39,6 @@ void Block::Render(HDC _dc)
 		, Width * vScale.x, Height * vScale.y
 		, m_pImage->GetDC()
 		, 0, 0, Width, Height
-		, RGB(255, 0, 255));
+		, RGB(255, 0, 255));	
 
 }

@@ -7,31 +7,22 @@
 #include"PyramidBoxUI.h"
 #include"GameOverUI.h"
 #include"TimeMgr.h"
+#include"ResMgr.h"
+#include"Image.h"
 
 BlockMgr::BlockMgr()
-	:m_currentTime(0.f)
-	, m_maxTime(0.f)
 {
-}
+} 
 
 BlockMgr::~BlockMgr()
 {
-	if(m_gameOverUI)
-	delete m_gameOverUI;
-
-	if (m_invenBoxUI)
-		delete m_invenBoxUI;
-
-	if (m_inventoryUI)
-		delete m_inventoryUI;
-
-	if (m_pyramidUI)
-		delete m_pyramidUI;
+	Release();
 }
 
 void BlockMgr::Init()
 {
-	//CreateMonsterTypes();
+	Release();
+
 	m_inventoryUI = new InventoryUI;
 	m_inventoryUI->Init();
 
@@ -42,40 +33,58 @@ void BlockMgr::Init()
 
 	CreateObject(m_inventoryUI, GROUP_TYPE::DEFAULT);
 	CreateObject(m_pyramidUI, GROUP_TYPE::DEFAULT);
+	CreateObject(m_gameOverUI, GROUP_TYPE::DEFAULT);
 	CreateMonsterTypes();
+
 }
 
 void BlockMgr::Update()
 {
+	if (m_isGameOver)
+		return;
+
+	m_playTime += TimeMgr::GetInst()->GetfDT();
 	m_currentTime -= TimeMgr::GetInst()->GetfDT();
-	
+
 	if (m_currentTime <= 0.f)
 	{
 		m_isGameOver = true;
 	}
 }
 
-void BlockMgr::FinalUpdate()
+void BlockMgr::Render(HDC hdc)
 {
-	bool isExistSelectableBox = false;
-	for (auto& box : m_inventoryUI->GetUIBoxList())
-	{
-		if (box->GetBlock() == nullptr) continue;
-
-
-		if (isExistSelectableBox == false && m_pyramidUI->ExistSelectableBox(box->GetBlockType()))
-		{
-			isExistSelectableBox = true;
-		}
-	}
-
-	if (!isExistSelectableBox)
-	{
-		m_isGameOver = true;
-	}
+	TimerRender(hdc);
+	PlayTimeTextRender(hdc);
 }
 
-void BlockMgr::Render(HDC hdc)
+void BlockMgr::Release()
+{
+	if (m_gameOverUI)
+		delete m_gameOverUI;
+
+	if (m_invenBoxUI)
+		delete m_invenBoxUI;
+
+	if (m_inventoryUI)
+	{
+		DeleteObject(m_inventoryUI);
+	}
+
+	if (m_pyramidUI)
+	{
+		DeleteObject(m_pyramidUI);
+	}
+
+	m_cirCount = 0;
+	m_boxCount = 0;
+	m_currentTime = (0.f);
+	m_maxTime = (0.f);
+	m_isGameOver = false;
+
+}
+
+void BlockMgr::TimerRender(HDC hdc)
 {
 	HBRUSH hNullBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
 	HBRUSH hOldBrush = (HBRUSH)SelectObject(hdc, hNullBrush);
@@ -97,15 +106,31 @@ void BlockMgr::Render(HDC hdc)
 	SetBkMode(hdc, TRANSPARENT);
 
 	TCHAR szTemp[256];
-	swprintf_s(szTemp, TEXT("%d / %d"), (int)m_currentTime, (int)m_maxTime);
+	swprintf_s(szTemp, TEXT("%d / %d"), (int)round(m_currentTime), (int)m_maxTime);
 	wstring str = szTemp;
 
 	TextOut(hdc, 80, 45, str.c_str(), str.length());
 
 	SelectObject(hdc, hFont);
 	DeleteObject(hFont);
+}
 
-	//m_gameOverUI->Render(hdc);
+void BlockMgr::PlayTimeTextRender(HDC hdc)
+{
+	HFONT hFont = CreateFont(24, 0, 0, 0, FW_BOLD, FALSE, FALSE, FALSE, HANGEUL_CHARSET, 0, 0, 0, 0, L"궁서");
+	HFONT oldFont = (HFONT)SelectObject(hdc, hFont);
+	SetTextColor(hdc, RGB(255, 255, 255));
+	SetBkMode(hdc, TRANSPARENT);
+
+	TCHAR szTemp[256];
+
+	swprintf_s(szTemp, TEXT("Time: %d"), (int)round(m_playTime));
+	wstring str = szTemp;
+
+	TextOut(hdc, 10, 10, str.c_str(), str.length());
+
+	SelectObject(hdc, oldFont);
+	::DeleteObject(oldFont);
 }
 
 void BlockMgr::CreateMonsterTypes()
@@ -114,8 +139,7 @@ void BlockMgr::CreateMonsterTypes()
 
 	for (int i = 0; i < 12; i++)
 	{
-		m_monsterTypes[i] = (BOX_TYPE)(rand() % 5);
-		CreateMonster(m_monsterTypes[i], i);
+		CreateMonster((BOX_TYPE)(rand() % 5), i);
 	}
 
 	SetMaxTime(DEFAULT_MAX_TIME - (m_cirCount++ * 12));
@@ -149,6 +173,7 @@ void BlockMgr::SelectPyramidBoxUI(PyramidBoxUI* pyBoxUI)
 
 	m_pyramidUI->AddBlock(pyBoxUI, m_invenBoxUI->GetBlock());
 	m_invenBoxUI->SetBlock(nullptr);
+	m_boxCount++;
 
 	ResetBoxUI();
 
@@ -157,12 +182,39 @@ void BlockMgr::SelectPyramidBoxUI(PyramidBoxUI* pyBoxUI)
 		CreateMonsterTypes();
 	}
 
-	// 여기에 게임 오버 조건 만들기
+	CheckGameOver();
 }
 
 void BlockMgr::ResetBoxUI()
 {
 	m_inventoryUI->ResetBoxUI();
 	m_pyramidUI->ResetBoxUI();
+}
+
+void BlockMgr::CheckGameOver()
+{
+	if (m_boxCount >= 36)
+	{
+		m_isGameOver = true;
+		return;
+	}
+
+	bool isExistSelectableBox = false;
+	for (auto& box : m_inventoryUI->GetUIBoxList())
+	{
+		if (box->GetBlock() == nullptr) continue;
+
+
+		if (isExistSelectableBox == false && m_pyramidUI->ExistSelectableBox(box->GetBlockType()))
+		{
+			isExistSelectableBox = true;
+		}
+	}
+
+	if (!isExistSelectableBox)
+	{
+		m_isGameOver = true;
+	}
+
 }
 
