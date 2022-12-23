@@ -5,12 +5,9 @@
 #include"InventoryUI.h"
 #include"InventoryBoxUI.h"
 #include"PyramidBoxUI.h"
-<<<<<<< HEAD
 #include "SoundMgr.h"
-=======
 #include"GameOverUI.h"
 #include"TimeMgr.h"
->>>>>>> main
 
 BlockMgr::BlockMgr()
 	:m_currentTime(0.f)
