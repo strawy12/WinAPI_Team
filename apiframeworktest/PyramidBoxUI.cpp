@@ -33,7 +33,7 @@ void PyramidBoxUI::Update()
 			BlockMgr::GetInst()->SetGameState(GAME_STATE::GAME);
 		}
 		m_block->SetPos(pos);
-	}
+	} 
 
 }
 
