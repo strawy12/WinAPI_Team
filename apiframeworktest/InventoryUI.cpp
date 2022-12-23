@@ -5,6 +5,7 @@
 #include "KeyMgr.h"
 #include "Block.h"
 #include "BlockMgr.h"
+#include "SoundMgr.h"
 
 InventoryUI::InventoryUI()
 	: Object()
@@ -124,6 +125,9 @@ void InventoryUI::AddBlock(int idx, Block* block)
 	pos.y = rt.top + (rt.bottom - rt.top) / 2;
 	m_uiBoxList[idx]->GetBlock()->SetPos(pos);
 	m_uiBoxList[idx]->GetBlock()->SetScale(Vec2(1, 1));
+
+	SoundMgr::GetInst()->LoadSound(L"SetBox", true, L"Sound\\SetBox.mp3");
+	SoundMgr::GetInst()->Play(L"SetBox");
 }
 
 void InventoryUI::PtInBoxUI()

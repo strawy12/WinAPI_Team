@@ -7,7 +7,7 @@ SoundMgr::SoundMgr()
 SoundMgr::~SoundMgr()
 {
 	Safe_Delete_Map(m_mapSod);
-	// ´Ù ¾²°í ³­ ÈÄ¿¡´Â ¹Ýµå½Ã close, releaseÇØ¾ßÇÔ.
+	// ë‹¤ ì“°ê³  ë‚œ í›„ì—ëŠ” ë°˜ë“œì‹œ close, releaseí•´ì•¼í•¨.
 	m_pSystem->close();
 	m_pSystem->release();
 }
@@ -19,7 +19,7 @@ void SoundMgr::Init()
 }
 void SoundMgr::LoadSound(const wstring& _strKey, bool _bLoop, const wstring& _strRelativePath)
 {
-	// Ã£À¸¸é »ý¼º x
+	// ì°¾ìœ¼ë©´ ìƒì„± x
 	if (FindSound(_strKey))
 		return;
 	wstring strFilePath = PathMgr::GetInst()->GetRsrcPath();
@@ -28,23 +28,19 @@ void SoundMgr::LoadSound(const wstring& _strKey, bool _bLoop, const wstring& _st
 	// wstring to string
 	/*string str;
 	size_t size;
-	str.resize(strFilePath.length());
-	wcstombs_s(&size, &str[0], str.size() + 1, strFilePath.c_str(), strFilePath.size());*/
-	int len;
-	int slength = static_cast<int>(strFilePath.length()) + 1;
-	len = WideCharToMultiByte(CP_ACP, 0, strFilePath.c_str(), slength, 0, 0, 0, 0);
-	string str(len, '\0');
-	WideCharToMultiByte(CP_ACP, 0, strFilePath.c_str(), slength, &str[0], len, 0, 0);
+	str = ws2s(strFilePath);
+	//str.resize(strFilePath.length());
+	//wcstombs_s(&size, &str[0], str.size() + 1, strFilePath.c_str(), strFilePath.size());
 
-	// ·çÇÁ ÇÒÁö ¸»Áö °áÁ¤
-	FMOD_MODE eMode = FMOD_LOOP_NORMAL; // ¹Ýº¹ Ãâ·Â
+	// ë£¨í”„ í• ì§€ ë§ì§€ ê²°ì •
+	FMOD_MODE eMode = FMOD_LOOP_NORMAL; // ë°˜ë³µ ì¶œë ¥
 	if (!_bLoop)
-		eMode = FMOD_DEFAULT; // »ç¿îµå 1¹ø¸¸ Ãâ·Â
+		eMode = FMOD_DEFAULT; // ì‚¬ìš´ë“œ 1ë²ˆë§Œ ì¶œë ¥
 
 	PSOUNDINFO ptSound = new SOUNDINFO;
 	ptSound->bLoop = _bLoop;
 	m_pSystem->createSound(str.c_str(), eMode, NULL, &ptSound->pSound);
-	m_mapSod.insert({ _strKey,ptSound });
+ 	m_mapSod.insert({ _strKey,ptSound });
 }
 
 void SoundMgr::Play(const wstring& _strKey)

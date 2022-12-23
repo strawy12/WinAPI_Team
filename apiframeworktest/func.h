@@ -4,6 +4,7 @@ class Object;
 void CreateObject(Object* _pObj, GROUP_TYPE _eGroup);
 void DeleteObject(Object* _pObj);
 void ChangeScene(SCENE_TYPE _eNext);
+
 wstring ToStringBoxType(BOX_TYPE type);
 
 template<typename T>
@@ -28,3 +29,6 @@ void Safe_Delete_Map(map<T1, T2>& _map)
 	}
 	_map.clear();
 }
+
+wstring s2ws(const string& s);
+string ws2s(const wstring& ws);

@@ -5,6 +5,7 @@
 #include"InventoryUI.h"
 #include"InventoryBoxUI.h"
 #include"PyramidBoxUI.h"
+#include "SoundMgr.h"
 #include"GameOverUI.h"
 #include"TimeMgr.h"
 #include"ResMgr.h"
@@ -179,6 +180,8 @@ void BlockMgr::SelectPyramidBoxUI(PyramidBoxUI* pyBoxUI)
 	if (m_inventoryUI->AllUsedBlock())
 	{
 		CreateMonsterTypes();
+		SoundMgr::GetInst()->LoadSound(L"ChageArray", true, L"Sound\\ChageArray.mp3");
+		SoundMgr::GetInst()->Play(L"ChageArray");
 	}
 
 	CheckGameOver();
