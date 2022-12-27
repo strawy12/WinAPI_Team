@@ -11,7 +11,7 @@ private:
 	vector<tEvent> m_vecEvent;
 	vector<Object*> m_vecDead;
 public:
-	SINGLE(EventMgr);
+	SINGLE(EventMgr)
 private:
 	EventMgr();
 	~EventMgr();

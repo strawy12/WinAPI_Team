@@ -28,6 +28,4 @@ void PathMgr::Init()
 
 	// 문자열 이어붙여줘.
 	wcscat_s(m_szRsrcPath, 255, L"\\bin\\Res\\");
-
-	SetWindowText(Core::GetInst()->GetWndHandle(), m_szRsrcPath);
 }

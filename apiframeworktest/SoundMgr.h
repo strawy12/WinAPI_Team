@@ -14,7 +14,7 @@ typedef struct tSoundInfo
 class SoundMgr
 {
 public:
-	SINGLE(SoundMgr);
+	SINGLE(SoundMgr)
 private:
 	SoundMgr();
 	~SoundMgr();

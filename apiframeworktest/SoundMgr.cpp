@@ -16,6 +16,7 @@ void SoundMgr::Init()
 	FMOD::System_Create(&m_pSystem);
 	if (m_pSystem != nullptr)
 		m_pSystem->init(10, FMOD_INIT_NORMAL, NULL);
+
 }
 void SoundMgr::LoadSound(const wstring& _strKey, bool _bLoop, const wstring& _strRelativePath)
 {
@@ -26,7 +27,7 @@ void SoundMgr::LoadSound(const wstring& _strKey, bool _bLoop, const wstring& _st
 	strFilePath += _strRelativePath;
 
 	// wstring to string
-	/*string str;
+	string str;
 	size_t size;
 	str = ws2s(strFilePath);
 	//str.resize(strFilePath.length());

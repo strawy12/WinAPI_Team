@@ -5,6 +5,7 @@
 #include "Image.h"
 #include "Core.h"
 #include "KeyMgr.h"
+#include "SoundMgr.h"
 
 GameOverUI::GameOverUI() : Object()
 {
@@ -30,6 +31,8 @@ GameOverUI::GameOverUI() : Object()
 	m_titleBtnRect.right = m_titleBtnRect.left + btnWidth;
 	m_titleBtnRect.top = pos.y + bgHeight / 2 - 50 - btnHeight/ 2;
 	m_titleBtnRect.bottom = m_titleBtnRect.top + btnHeight ;
+
+	m_playSound = false;
 }
 
 
@@ -49,9 +52,11 @@ void GameOverUI::Update()
 
 		if (PtInRect(&m_titleBtnRect, pt))
 		{
-			int a = 0;
 			//Title ¾ÀÀ¸·Î
-			//ChangeScene(SCENE_TYPE::DEFAULT);
+			SoundMgr::GetInst()->LoadSound(L"ClickButton", false, L"Sound\\ClickButton.mp3");
+			SoundMgr::GetInst()->Play(L"ClickButton");
+			SoundMgr::GetInst()->Stop(SOUND_CHANNEL::SC_BGM);
+			ChangeScene(SCENE_TYPE::TITLE);
 		}
 	}
 	
@@ -59,16 +64,31 @@ void GameOverUI::Update()
 
 void GameOverUI::Render(HDC hdc)
 {
-	if (BlockMgr::GetInst()->GameClear())
+	if (BlockMgr::GetInst()->GameOver())
 	{
+		if (m_playSound == false)
+		{
+			m_playSound = true;
+			SoundMgr::GetInst()->Stop(SOUND_CHANNEL::SC_BGM);
+			SoundMgr::GetInst()->LoadSound(L"Fail", false, L"Sound\\Fail.mp3");
+			SoundMgr::GetInst()->Play(L"Fail");
+		}
+
 		BGRender(hdc);
 		TitleRender(hdc, L"GameOver", RGB(255,0,0));
 		BoxCountTextRender(hdc);
 		PlayTimeTextRender(hdc);
 		TitleBtnRender(hdc);
 	}
-	else if (BlockMgr::GetInst()->GameOver())
+	else if (BlockMgr::GetInst()->GameClear())
 	{
+		if (m_playSound == false)
+		{
+			m_playSound = true;
+			SoundMgr::GetInst()->Stop(SOUND_CHANNEL::SC_BGM);
+			SoundMgr::GetInst()->LoadSound(L"Success", false, L"Sound\\Success.mp3");
+			SoundMgr::GetInst()->Play(L"Success");
+		}
 		BGRender(hdc);
 		TitleRender(hdc, L"GameClear", RGB(0, 255, 0));
 		BoxCountTextRender(hdc);

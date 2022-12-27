@@ -49,10 +49,7 @@ void TimeMgr::Render()
 		m_iFPS = m_iCallCount;
 		m_dAcc = 0.;
 		m_iCallCount = 0;
-		static wchar_t szBuffer[255] = {};
-		swprintf_s(szBuffer, L"FPS : %d,  DT: %lf", m_iFPS, m_dDT);
-		//		wsprintf(szBuffer, L"FPS : %d,  DT: %lf", m_iFPS, m_dDT);
-		SetWindowText(Core::GetInst()->GetWndHandle(), szBuffer);
+		
 	}
 
 }

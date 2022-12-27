@@ -23,6 +23,9 @@ public:
 
 	void TimerRender(HDC hdc);
 	void PlayTimeTextRender(HDC hdc);
+	void StackBlockCntTextRender(HDC hdc);
+	void ResetBtnRender(HDC hdc);
+
 
 public:
 	void CreateMonsterTypes();
@@ -30,6 +33,7 @@ public:
 	void SelectInventoryBoxUI(InventoryBoxUI* invenBoxUI);
 	void SelectPyramidBoxUI(PyramidBoxUI* pyBoxUI);
 	void ResetBoxUI();
+	void ClickResetBtn();
 
 	void CheckGameOver();
 
@@ -39,6 +43,7 @@ public:
 	void SetGameState(GAME_STATE state) {
 		if (m_gameState == GAME_STATE::GAMEOVER || m_gameState == GAME_STATE::GAMECLEAR) return;
 		m_gameState = state; }
+	void EnterTitleState() { m_gameState = GAME_STATE::TITLE; }
 
 	int GetBoxCount() { return m_boxCount; }
 	float GetPlayTime() { return m_playTime; }
@@ -63,5 +68,8 @@ private:
 	int m_boxCount; // ½×Àº Ä«¿îÆ®
 
 	GAME_STATE m_gameState;
+
+	class Image* m_ImageReset;
+	RECT m_resetBtnRect;
 };
 

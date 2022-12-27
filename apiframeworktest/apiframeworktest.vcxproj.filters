@@ -74,6 +74,9 @@
     <Filter Include="Engine\04. Object\BoxUI">
       <UniqueIdentifier>{8e32aa71-05eb-4d61-afd2-6abaf7e06ddf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\04. Object\UI">
+      <UniqueIdentifier>{1b2866a4-fd26-4ab8-b954-1a59d4fb6447}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core.h">
@@ -169,19 +172,27 @@
     <ClInclude Include="Block.h">
       <Filter>Engine\04. Object</Filter>
     </ClInclude>
-    <ClInclude Include="InventoryUI.h">
-      <Filter>Engine\04. Object</Filter>
-    </ClInclude>
-    <ClInclude Include="PyramidUI.h">
-      <Filter>Engine\04. Object</Filter>
-    </ClInclude>
     <ClInclude Include="BoxUI.h">
       <Filter>Engine\04. Object\BoxUI</Filter>
     </ClInclude>
-    <ClInclude Include="PyramidBoxUI.h" />
-    <ClInclude Include="InventoryBoxUI.h" />
-    <ClInclude Include="GameOverUI.h" />
-    <ClInclude Include="StartScene.h" />
+    <ClInclude Include="PyramidBoxUI.h">
+      <Filter>Engine\04. Object\BoxUI</Filter>
+    </ClInclude>
+    <ClInclude Include="InventoryBoxUI.h">
+      <Filter>Engine\04. Object\BoxUI</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOverUI.h">
+      <Filter>Engine\04. Object\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="InventoryUI.h">
+      <Filter>Engine\04. Object\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="PyramidUI.h">
+      <Filter>Engine\04. Object\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="StartScene.h">
+      <Filter>Engine\05. Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="apiframeworktest.rc">
@@ -193,6 +204,12 @@
       <Filter>Default\리소스 파일</Filter>
     </Image>
     <Image Include="apiframeworktest.ico">
+      <Filter>Default\리소스 파일</Filter>
+    </Image>
+    <Image Include="C:\Users\USER\Downloads\gameIcon.ico">
+      <Filter>Default\리소스 파일</Filter>
+    </Image>
+    <Image Include="..\OutPut\bin\Res\Image\gameIcon.bmp">
       <Filter>Default\리소스 파일</Filter>
     </Image>
   </ItemGroup>
@@ -273,18 +290,26 @@
     <ClCompile Include="Block.cpp">
       <Filter>Engine\04. Object</Filter>
     </ClCompile>
-    <ClCompile Include="InventoryUI.cpp">
-      <Filter>Engine\04. Object</Filter>
-    </ClCompile>
-    <ClCompile Include="PyramidUI.cpp">
-      <Filter>Engine\04. Object</Filter>
-    </ClCompile>
     <ClCompile Include="BoxUI.cpp">
       <Filter>Engine\04. Object\BoxUI</Filter>
     </ClCompile>
-    <ClCompile Include="PyramidBoxUI.cpp" />
-    <ClCompile Include="InventoryBoxUI.cpp" />
-    <ClCompile Include="GameOverUI.cpp" />
-    <ClCompile Include="StartScene.cpp" />
+    <ClCompile Include="PyramidBoxUI.cpp">
+      <Filter>Engine\04. Object\BoxUI</Filter>
+    </ClCompile>
+    <ClCompile Include="InventoryBoxUI.cpp">
+      <Filter>Engine\04. Object\BoxUI</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOverUI.cpp">
+      <Filter>Engine\04. Object\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="InventoryUI.cpp">
+      <Filter>Engine\04. Object\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="PyramidUI.cpp">
+      <Filter>Engine\04. Object\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="StartScene.cpp">
+      <Filter>Engine\05. Scene</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

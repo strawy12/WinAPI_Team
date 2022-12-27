@@ -125,9 +125,6 @@ void InventoryUI::AddBlock(int idx, Block* block)
 	pos.y = rt.top + (rt.bottom - rt.top) / 2;
 	m_uiBoxList[idx]->GetBlock()->SetPos(pos);
 	m_uiBoxList[idx]->GetBlock()->SetScale(Vec2(1, 1));
-
-	SoundMgr::GetInst()->LoadSound(L"SetBox", true, L"Sound\\SetBox.mp3");
-	SoundMgr::GetInst()->Play(L"SetBox");
 }
 
 void InventoryUI::PtInBoxUI()
@@ -142,6 +139,8 @@ void InventoryUI::PtInBoxUI()
 		{
 			m_selectBoxUI = m_uiBoxList[i];
 			BlockMgr::GetInst()->SelectInventoryBoxUI(m_uiBoxList[i]);
+			SoundMgr::GetInst()->LoadSound(L"ClickButton", false, L"Sound\\ClickButton.mp3");
+			SoundMgr::GetInst()->Play(L"ClickButton");
 		}
 		else
 		{
@@ -168,6 +167,8 @@ void InventoryUI::PtInBoxUI()
 		pos.y = rt.top + (rt.bottom - rt.top) / 2;
 		pos.y -= 16;
 		m_selectBoxUI->GetBlock()->SetPos(pos);
+
+
 	}
 }
 

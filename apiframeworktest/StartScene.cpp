@@ -3,6 +3,9 @@
 #include "Image.h"
 #include "ResMgr.h"
 #include "SoundMgr.h"
+#include "BlockMgr.h"
+#include "Core.h"
+#include "KeyMgr.h"
 
 StartScene::StartScene()
 {
@@ -14,12 +17,12 @@ StartScene::~StartScene()
 
 void StartScene::Enter()
 {
+
 	m_StartPos = { 230, 500 };
 	m_StartRect = {};
 
-	m_ImageBG = ResMgr::GetInst()->ImgLoad(L"PyramidBG", L"Image\\Background.bmp");
+	m_ImageBG = ResMgr::GetInst()->ImgLoad(L"TitleBG", L"Image\\TitleBG.bmp");
 	m_ImageStart = ResMgr::GetInst()->ImgLoad(L"Start", L"Image\\StartBtn.bmp");
-	m_ImageLogo = ResMgr::GetInst()->ImgLoad(L"Chick", L"Image\\Chick.bmp");
 
 	m_StartRect.left = m_StartPos.x;
 	m_StartRect.right = m_StartRect.left + m_ImageStart->GetWidth();
@@ -28,6 +31,9 @@ void StartScene::Enter()
 
 	SoundMgr::GetInst()->LoadSound(L"TitleBGM", true, L"Sound\\TitleBGM.mp3");
 	SoundMgr::GetInst()->Play(L"TitleBGM");
+	SoundMgr::GetInst()->Volume(SOUND_CHANNEL::SC_BGM, 0.3);
+
+	BlockMgr::GetInst()->EnterTitleState();
 }
 
 void StartScene::Exit()
@@ -36,6 +42,20 @@ void StartScene::Exit()
 
 void StartScene::Update()
 {
+	if (KEY_UP(KEY::LBTN))
+	{
+		POINT pt;
+		GetCursorPos(&pt);
+		ScreenToClient(Core::GetInst()->GetWndHandle(), &pt);
+
+		if (PtInRect(&m_StartRect, pt))
+		{
+			SoundMgr::GetInst()->LoadSound(L"ClickButton", false, L"Sound\\ClickButton.mp3");
+			SoundMgr::GetInst()->Play(L"ClickButton");
+			SoundMgr::GetInst()->Stop(SOUND_CHANNEL::SC_BGM);
+			ChangeScene(SCENE_TYPE::DEFAULT);
+		}
+	}
 }
 
 void StartScene::Render(HDC hdc)
@@ -60,16 +80,5 @@ void StartScene::Render(HDC hdc)
 		, BtnWidth, BtnHeight
 		, m_ImageStart->GetDC()
 		, 0, 0, BtnWidth, BtnHeight
-		, RGB(255, 0, 255));
-
-	int LogoWidth = (int)m_ImageLogo->GetWidth();
-	int LogoHeight = (int)m_ImageLogo->GetHeight();
-
-	TransparentBlt(hdc
-		, m_StartRect.left
-		, m_StartRect.top -400
-		, LogoWidth, LogoHeight
-		, m_ImageLogo->GetDC()
-		, 0, 0, LogoWidth, LogoHeight
 		, RGB(255, 0, 255));
 }

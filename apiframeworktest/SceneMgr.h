@@ -8,7 +8,7 @@ private:
 	SceneMgr();
 	~SceneMgr();
 private:
-	Scene* m_arrScene[1];//(UINT)SCENE_TYPE::END]; // ¸ðµç ¾À ¸ñ·Ï
+	Scene* m_arrScene[(UINT)SCENE_TYPE::END]; // ¸ðµç ¾À ¸ñ·Ï
 	Scene* m_pCurScene;						  // ÇöÀç ¾À
 public:
 	Scene* GetCurScene() { return m_pCurScene; }

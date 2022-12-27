@@ -1,12 +1,92 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(499,5): warning MSB8004: Output 디렉터리가 슬래시로 끝나지 않습니다. Output 디렉터리의 적절한 평가를 허용하는 데 필요하므로 이 빌드 인스턴스에서 슬래시를 추가합니다.
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(520,5): warning MSB8004: Output 디렉터리가 슬래시로 끝나지 않습니다. Output 디렉터리의 적절한 평가를 허용하는 데 필요하므로 이 빌드 인스턴스에서 슬래시를 추가합니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(534,5): warning MSB8028: 중간 디렉터리(x64\Release\)에 다른 프로젝트(apiframeworktest.vcxproj)에서 공유하는 파일이 포함되어 있습니다.  이로 인해 잘못된 정리 및 다시 빌드 동작이 수행될 수 있습니다.
+  Animation.cpp
+  Animator.cpp
+  Block.cpp
+D:\VS\WinAPI_Team\apiframeworktest\Block.cpp(40,30): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\VS\WinAPI_Team\apiframeworktest\Block.cpp(40,11): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  BlockMgr.cpp
+D:\VS\WinAPI_Team\apiframeworktest\BlockMgr.cpp(23,32): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\VS\WinAPI_Team\apiframeworktest\BlockMgr.cpp(25,31): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\VS\WinAPI_Team\apiframeworktest\BlockMgr.cpp(147,48): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\VS\WinAPI_Team\apiframeworktest\BlockMgr.cpp(165,48): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\VS\WinAPI_Team\apiframeworktest\BlockMgr.cpp(183,48): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\VS\WinAPI_Team\apiframeworktest\BlockMgr.cpp(205,12): warning C4244: '인수': 'time_t'에서 'unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\VS\WinAPI_Team\apiframeworktest\BlockMgr.cpp(212,30): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  BoxUI.cpp
+D:\VS\WinAPI_Team\apiframeworktest\BoxUI.cpp(18,29): warning C4244: '=': 'float'에서 'BYTE'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\VS\WinAPI_Team\apiframeworktest\BoxUI.cpp(56,21): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\VS\WinAPI_Team\apiframeworktest\BoxUI.cpp(56,11): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\VS\WinAPI_Team\apiframeworktest\BoxUI.cpp(78,21): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\VS\WinAPI_Team\apiframeworktest\BoxUI.cpp(78,11): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\VS\WinAPI_Team\apiframeworktest\BoxUI.cpp(86,21): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\VS\WinAPI_Team\apiframeworktest\BoxUI.cpp(86,11): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\VS\WinAPI_Team\apiframeworktest\BoxUI.cpp(96,25): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\VS\WinAPI_Team\apiframeworktest\BoxUI.cpp(96,15): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\VS\WinAPI_Team\apiframeworktest\BoxUI.cpp(94,21): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\VS\WinAPI_Team\apiframeworktest\BoxUI.cpp(94,11): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Camera.cpp
+  Collider.cpp
+  CollisionMgr.cpp
   Core.cpp
+  EventMgr.cpp
+  func.cpp
+  GameOverUI.cpp
+D:\VS\WinAPI_Team\apiframeworktest\GameOverUI.cpp(22,29): warning C4244: '=': 'float'에서 'BYTE'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\VS\WinAPI_Team\apiframeworktest\GameOverUI.cpp(30,30): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\VS\WinAPI_Team\apiframeworktest\GameOverUI.cpp(32,49): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\VS\WinAPI_Team\apiframeworktest\GameOverUI.cpp(161,28): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\VS\WinAPI_Team\apiframeworktest\GameOverUI.cpp(160,45): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\VS\WinAPI_Team\apiframeworktest\GameOverUI.cpp(159,10): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\VS\WinAPI_Team\apiframeworktest\GameOverUI.cpp(189,28): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\VS\WinAPI_Team\apiframeworktest\GameOverUI.cpp(188,45): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\VS\WinAPI_Team\apiframeworktest\GameOverUI.cpp(187,22): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\VS\WinAPI_Team\apiframeworktest\GameOverUI.cpp(224,28): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\VS\WinAPI_Team\apiframeworktest\GameOverUI.cpp(223,45): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\VS\WinAPI_Team\apiframeworktest\GameOverUI.cpp(222,22): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Image.cpp
+  InventoryBoxUI.cpp
+  InventoryUI.cpp
+D:\VS\WinAPI_Team\apiframeworktest\InventoryUI.cpp(124,18): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\VS\WinAPI_Team\apiframeworktest\InventoryUI.cpp(125,17): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\VS\WinAPI_Team\apiframeworktest\InventoryUI.cpp(154,21): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\VS\WinAPI_Team\apiframeworktest\InventoryUI.cpp(155,20): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\VS\WinAPI_Team\apiframeworktest\InventoryUI.cpp(166,19): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\VS\WinAPI_Team\apiframeworktest\InventoryUI.cpp(167,18): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\VS\WinAPI_Team\apiframeworktest\InventoryUI.cpp(132,8): warning C4101: 'pt' :참조되지 않은 지역 변수입니다.
+  KeyMgr.cpp
+  main.cpp
+  BWindow.cpp
+  Object.cpp
   PathMgr.cpp
-LINK : warning C4727: 타임스탬프가 동일한 c:\users\user\source\repos\apiframeworktest\apiframeworktest\x64\release\apiframeworktest.pch PCH가 c:\users\user\source\repos\apiframeworktest\apiframeworktest\x64\release\keymgr.obj 및 c:\users\user\source\repos\apiframeworktest\apiframeworktest\x64\release\image.obj에 있습니다.  첫 번째 PCH를 사용합니다.
-LINK : warning C4727: 타임스탬프가 동일한 c:\users\user\source\repos\apiframeworktest\apiframeworktest\x64\release\apiframeworktest.pch PCH가 c:\users\user\source\repos\apiframeworktest\apiframeworktest\x64\release\object.obj 및 c:\users\user\source\repos\apiframeworktest\apiframeworktest\x64\release\monster.obj에 있습니다.  첫 번째 PCH를 사용합니다.
-LINK : warning C4727: 타임스탬프가 동일한 c:\users\user\source\repos\apiframeworktest\apiframeworktest\x64\release\apiframeworktest.pch PCH가 c:\users\user\source\repos\apiframeworktest\apiframeworktest\x64\release\scenemgr.obj 및 c:\users\user\source\repos\apiframeworktest\apiframeworktest\x64\release\scene.obj에 있습니다.  첫 번째 PCH를 사용합니다.
+D:\VS\WinAPI_Team\apiframeworktest\PathMgr.cpp(17,35): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  PyramidBoxUI.cpp
+  PyramidUI.cpp
+D:\VS\WinAPI_Team\apiframeworktest\PyramidUI.cpp(77,44): warning C4267: '=': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\VS\WinAPI_Team\apiframeworktest\PyramidUI.cpp(78,41): warning C4267: '=': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\VS\WinAPI_Team\apiframeworktest\PyramidUI.cpp(177,18): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\VS\WinAPI_Team\apiframeworktest\PyramidUI.cpp(178,17): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Res.cpp
+  ResMgr.cpp
+  Scene.cpp
+  SceneMgr.cpp
+  Scene_01.cpp
+D:\VS\WinAPI_Team\apiframeworktest\Scene_01.cpp(28,56): warning C4305: '인수': 'double'에서 'float'(으)로 잘립니다.
+  SelectGDI.cpp
+  Sound.cpp
+  SoundMgr.cpp
+D:\VS\WinAPI_Team\apiframeworktest\SoundMgr.cpp(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+D:\VS\WinAPI_Team\apiframeworktest\SoundMgr.cpp(31,9): warning C4101: 'size' :참조되지 않은 지역 변수입니다.
+  StartScene.cpp
+D:\VS\WinAPI_Team\apiframeworktest\StartScene.cpp(34,56): warning C4305: '인수': 'double'에서 'float'(으)로 잘립니다.
+  TimeMgr.cpp
+  Vec2.cpp
+D:\VS\WinAPI_Team\apiframeworktest\Vec2.cpp(26,5): warning C4244: '초기화 중': 'long'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\VS\WinAPI_Team\apiframeworktest\Vec2.cpp(27,5): warning C4244: '초기화 중': 'long'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+LINK : warning C4727: 타임스탬프가 동일한 d:\vs\winapi_team\apiframeworktest\x64\release\gamep_winapiframework.pch PCH가 d:\vs\winapi_team\apiframeworktest\x64\release\core.obj 및 d:\vs\winapi_team\apiframeworktest\x64\release\collisionmgr.obj에 있습니다.  첫 번째 PCH를 사용합니다.
   코드를 생성하고 있습니다.
-  12 of 293 functions ( 4.1%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    5 functions had inline decision re-evaluated but remain unchanged
+  Previous IPDB not found, fall back to full compilation.
+D:\VS\WinAPI_Team\apiframeworktest\func.cpp(53): warning C4715: 'ToStringBoxType': 모든 제어 경로에서 값을 반환하지는 않습니다.
+  All 1134 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   코드를 생성했습니다.
-  apiframeworktest.vcxproj -> C:\Users\user\source\repos\apiframeworktest\OutPut\bin\apiframeworktest.exe
+  apiframeworktest.vcxproj -> D:\VS\WinAPI_Team\OutPut\bin\Gamep_winapiframework.exe

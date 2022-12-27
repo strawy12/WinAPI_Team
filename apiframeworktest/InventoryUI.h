@@ -23,7 +23,7 @@ public:
 
 	bool AllUsedBlock();
 
-	vector<InventoryBoxUI*> GetUIBoxList() { return m_uiBoxList; }
+	vector<InventoryBoxUI*>& GetUIBoxList() { return m_uiBoxList; }
 
 
 private:

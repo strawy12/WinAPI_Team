@@ -179,7 +179,7 @@ void PyramidUI::AddBlock(PyramidBoxUI* boxUI, Block* block)
 	boxUI->GetBlock()->SetPos(pos);
 	boxUI->GetBlock()->SetScale(Vec2(2, 2));
 
-	SoundMgr::GetInst()->LoadSound(L"SetBox", true, L"Sound\\SetBox.mp3");
+	SoundMgr::GetInst()->LoadSound(L"SetBox", false, L"Sound\\SetBox.mp3");
 	SoundMgr::GetInst()->Play(L"SetBox");
 
 	boxUI->SpawnEffect();

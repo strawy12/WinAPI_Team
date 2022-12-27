@@ -17,7 +17,6 @@ public:
 private:
 	class Image* m_ImageBG;
 	class Image* m_ImageStart;
-	class Image* m_ImageLogo;
 	POINT m_StartPos;
 	RECT m_StartRect;
 

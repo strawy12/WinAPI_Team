@@ -24,5 +24,7 @@ private:
 	BLENDFUNCTION m_bf;
 	RECT m_titleBtnRect;
 
+	bool m_playSound;
+
 };
 
